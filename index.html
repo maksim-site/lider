@@ -567,9 +567,9 @@ body.lightbox-lock{overflow:hidden}
       <a href="#brands">Бренды</a>
       <a href="#projects">Проекты</a>
       <a href="#contact">Контакты</a>
-      <a href="#contact" class="btn btn-primary nav-drawer-cta">Получить расчёт</a>
+      <a href="#lead-form" class="btn btn-primary nav-drawer-cta">Получить расчёт</a>
     </nav>
-    <a href="#contact" class="btn btn-primary nav-mobile-cta">Получить расчёт</a>
+    <a href="#lead-form" class="btn btn-primary nav-mobile-cta">Получить расчёт</a>
     <a href="tel:+79119023763" class="nav-phone">+7 (911) 902-37-63</a>
     <button class="burger" id="burger" aria-label="Меню"><span></span><span></span><span></span></button>
   </div>
@@ -588,7 +588,7 @@ body.lightbox-lock{overflow:hidden}
     <h1>Привезём и растаможим оборудование для&nbsp;вашего <em>вина</em></h1>
     <p class="lead">Доставка из-за рубежа любого винодельческого оборудования и запасных частей. Берём на себя полный цикл ВЭД: от выкупа у европейского производителя до пусконаладки на вашей площадке.</p>
     <div class="hero-actions">
-      <a href="#contact" class="btn btn-primary">Получить консультацию</a>
+      <a href="#lead-form" class="btn btn-primary">Получить консультацию</a>
       <a href="#categories" class="btn btn-light">Каталог оборудования</a>
     </div>
   </div>
@@ -622,7 +622,7 @@ body.lightbox-lock{overflow:hidden}
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M20 6 9 17l-5-5"/></svg>Подбор по модели, даже если оборудование куплено не у нас</li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M20 6 9 17l-5-5"/></svg>Срочные поставки, когда деталь нужна «ещё вчера»</li>
       </ul>
-      <a href="#contact" class="btn btn-primary">Запросить запчасть</a>
+      <a href="#lead-form" class="btn btn-primary">Запросить запчасть</a>
     </div>
     <div class="parts-visual reveal d1">
       <picture><source srcset="assets/tanks.webp" type="image/webp"><img src="assets/tanks.jpg" alt="Винодельческое оборудование"></picture>
@@ -989,14 +989,14 @@ const getAnchorNudge=(hash)=>{
     brands:compact?34:tablet?36:38,
     projects:compact?84:tablet?88:92,
     contact:compact?74:tablet?78:82,
-    'lead-form':compact?74:tablet?78:82
+    'lead-form':compact?10:tablet?8:6
   };
   return nudges[id]||0;
 };
 const getAnchorTarget=(hash)=>{
   if(!hash||hash==='#')return null;
   const id=decodeURIComponent(hash.slice(1));
-  return document.getElementById(id==='lead-form'?'contact':id);
+  return document.getElementById(id);
 };
 const animateReveal=(el)=>{
   if(el.classList.contains('in')||el.dataset.revealing==='true')return;
