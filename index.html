@@ -325,11 +325,13 @@ header:not(.scrolled) .burger span{background:#fff}
 .flag-ae{background:linear-gradient(90deg,#c9353f 0 27%,transparent 27%),linear-gradient(#2f8f55 0 33.33%,#fff 33.33% 66.66%,#17110f 66.66%)}
 .form .btn{width:100%;background:#fff;color:var(--wine);margin-top:6px}
 .form .btn:hover{background:var(--gold-soft);color:var(--ink)}
+.form .btn:disabled{opacity:.68;cursor:wait}
 .form .priv{font-size:12px;color:rgba(255,255,255,.5);margin-top:14px;text-align:center}
 .field input.is-invalid{border-color:#ffb4a8;background:rgba(255,180,168,.12)}
 .form-status{min-height:20px;margin-top:12px;font-size:13px;color:rgba(255,255,255,.72);text-align:center}
 .form-status.success{color:var(--gold-soft)}
 .form-status.error{color:#ffcabf}
+.hp-field{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none}
 
 /* ---------- FOOTER ---------- */
 footer{background:var(--ink);color:rgba(255,255,255,.66);padding:70px 0 36px}
@@ -343,10 +345,65 @@ footer{background:var(--ink);color:rgba(255,255,255,.66);padding:70px 0 36px}
 .foot-col a:hover{color:#fff}
 .foot-bottom{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-top:26px;font-size:13px;color:var(--ink-faint)}
 
-/* ---------- REVEAL ANIMATION ---------- */
-.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
-.reveal.in{opacity:1;transform:none}
-.reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}
+/* ---------- MOTION ---------- */
+@keyframes heroRise{
+  from{opacity:0;transform:translate3d(0,28px,0);filter:blur(10px)}
+  to{opacity:1;transform:none;filter:blur(0)}
+}
+@keyframes heroImageIn{
+  from{transform:scale(1.075)}
+  to{transform:scale(1.02)}
+}
+@keyframes lineGrow{
+  from{transform:scaleX(0);opacity:.4}
+  to{transform:scaleX(1);opacity:1}
+}
+.hero-bg img{
+  transform:scale(1.02);
+  transform-origin:center;
+  animation:heroImageIn 1800ms cubic-bezier(.16,1,.3,1) both;
+}
+.hero .eyebrow,
+.hero h1,
+.hero .lead,
+.hero-actions,
+.hero-meta .item{
+  animation:heroRise 820ms cubic-bezier(.16,1,.3,1) both;
+  will-change:opacity,transform,filter;
+}
+.hero .eyebrow{animation-delay:.12s}
+.hero h1{animation-delay:.22s}
+.hero .lead{animation-delay:.34s}
+.hero-actions{animation-delay:.46s}
+.hero-meta .item:nth-child(1){animation-delay:.62s}
+.hero-meta .item:nth-child(2){animation-delay:.7s}
+.hero-meta .item:nth-child(3){animation-delay:.78s}
+.reveal{
+  opacity:0;
+  transform:translate3d(0,34px,0) scale(.985);
+  filter:blur(8px);
+  transition-property:opacity,transform,filter;
+  transition-duration:.82s;
+  transition-timing-function:cubic-bezier(.16,1,.3,1);
+  transition-delay:var(--reveal-delay,0s);
+  will-change:opacity,transform,filter;
+}
+.reveal.in{opacity:1;transform:none;filter:blur(0)}
+.reveal.d1{--reveal-delay:.08s}.reveal.d2{--reveal-delay:.16s}.reveal.d3{--reveal-delay:.24s}
+.reveal.in .eyebrow::before{animation:lineGrow .7s cubic-bezier(.16,1,.3,1) both}
+.step.reveal::after{transform:scaleX(0);transform-origin:left;transition:transform .72s cubic-bezier(.16,1,.3,1) .22s}
+.step.reveal.in::after{transform:scaleX(1)}
+@media(hover:hover){
+  .svc,.cat,.case,.proj,.brand-chip,.btn,.nav-phone{will-change:transform}
+  .svc:hover{transform:translateY(-4px);box-shadow:0 18px 42px -28px rgba(28,24,21,.32);position:relative;z-index:1}
+  .brand-chip:hover{transform:translateY(-2px)}
+  .parts-visual img,.adv-visual img{transition:transform .9s cubic-bezier(.16,1,.3,1)}
+  .parts-visual:hover img,.adv-visual:hover img{transform:scale(1.035)}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;scroll-behavior:auto !important;transition-duration:.001ms !important}
+  .reveal{opacity:1 !important;transform:none !important;filter:none !important}
+}
 
 /* ---------- PARTS (flagship: запчасти) ---------- */
 .parts{background:var(--cream)}
@@ -546,7 +603,7 @@ body.lightbox-lock{overflow:hidden}
   .cat,.svc,.case{padding:24px 22px}
 }
 </style>
-<noscript><style>.reveal{opacity:1 !important;transform:none !important}</style></noscript>
+<noscript><style>.reveal{opacity:1 !important;transform:none !important;filter:none !important}</style></noscript>
 </head>
 <body>
 
@@ -844,9 +901,10 @@ body.lightbox-lock{overflow:hidden}
     <div class="form reveal d1" id="lead-form">
       <h3>Заявка на поставку</h3>
       <p class="fhint">Заполните форму, свяжемся и предложим решение.</p>
-      <!-- TODO: подключить реальную отправку на a.lashchukhin@l-group.su + Telegram-бот (сейчас демо, тестовые заявки не шлём) -->
-      <form data-lead-form data-mailto="a.lashchukhin@l-group.su">
-        <div class="field"><label>Ваше имя</label><input type="text" placeholder="Как к вам обращаться" required></div>
+      <form data-lead-form action="send.php" method="post">
+        <input class="hp-field" type="text" name="company" autocomplete="off" tabindex="-1" aria-hidden="true">
+        <input type="hidden" name="source" value="leader-vino-site">
+        <div class="field"><label>Ваше имя</label><input name="name" type="text" placeholder="Как к вам обращаться" required></div>
         <div class="field phone-control" data-phone-control>
           <label>Телефон</label>
           <div class="phone-input-wrap">
@@ -879,8 +937,8 @@ body.lightbox-lock{overflow:hidden}
           </div>
         </div>
         <div class="field"><label>E-mail</label><input name="email" type="email" placeholder="you@winery.ru"></div>
-        <div class="field"><label>Что нужно привезти</label><textarea placeholder="Опишите оборудование, бренд или задачу"></textarea></div>
-        <div class="consent"><input type="checkbox" id="agree" required><label for="agree">Я даю согласие на обработку персональных данных ООО «Лидер» (ИНН 7839029780) в целях обработки заявки и обратной связи. <a href="privacy.html" target="_blank" rel="noopener">Политика конфиденциальности</a></label></div>
+        <div class="field"><label>Что нужно привезти</label><textarea name="message" placeholder="Опишите оборудование, бренд или задачу" required></textarea></div>
+        <div class="consent"><input type="checkbox" id="agree" name="agree" value="yes" required><label for="agree">Я даю согласие на обработку персональных данных ООО «Лидер» (ИНН 7839029780) в целях обработки заявки и обратной связи. <a href="privacy.html" target="_blank" rel="noopener">Политика конфиденциальности</a></label></div>
         <button type="submit" class="btn">Отправить заявку</button>
         <div class="form-status" aria-live="polite"></div>
       </form>
@@ -936,6 +994,8 @@ body.lightbox-lock{overflow:hidden}
 </footer>
 
 <script>
+const prefersReducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 // header scroll state
 const header=document.getElementById('header');
 const onScroll=()=>{header.classList.toggle('scrolled',window.scrollY>60)};
@@ -998,12 +1058,43 @@ const getAnchorTarget=(hash)=>{
   const id=decodeURIComponent(hash.slice(1));
   return document.getElementById(id);
 };
+const prepareMotionElements=()=>{
+  const staggerGroups=[
+    ['.svc-grid .svc',.045,.28],
+    ['.cat-grid .cat',.035,.28],
+    ['.steps .step',.055,.32],
+    ['.proj-grid .proj',.08,.24],
+    ['.adv-list .adv-item',.07,.28],
+    ['.contacts-list .contact-person',.07,.2],
+    ['.foot-top > *',.08,.22],
+    ['.foot-bottom > *',.06,.12]
+  ];
+  const brandWall=document.querySelector('.brand-wall.reveal');
+  if(brandWall){
+    brandWall.classList.remove('reveal');
+    brandWall.classList.add('brand-wall-ready');
+  }
+  document.querySelectorAll('.brand-chip').forEach((chip,index)=>{
+    chip.classList.add('reveal');
+    chip.style.setProperty('--reveal-delay',`${Math.min(index*.012,.28).toFixed(3)}s`);
+  });
+  staggerGroups.forEach(([selector,step,max])=>{
+    document.querySelectorAll(selector).forEach((el,index)=>{
+      el.classList.add('reveal');
+      if(!el.classList.contains('d1')&&!el.classList.contains('d2')&&!el.classList.contains('d3')){
+        el.style.setProperty('--reveal-delay',`${Math.min(index*step,max).toFixed(3)}s`);
+      }
+    });
+  });
+};
+prepareMotionElements();
 const animateReveal=(el)=>{
   if(el.classList.contains('in')||el.dataset.revealing==='true')return;
   el.dataset.revealing='true';
   el.style.removeProperty('transition');
   el.style.removeProperty('opacity');
   el.style.removeProperty('transform');
+  el.style.removeProperty('filter');
   requestAnimationFrame(()=>{
     el.classList.add('in');
     delete el.dataset.revealing;
@@ -1014,6 +1105,7 @@ const revealInstant=(el)=>{
   el.style.transition='none';
   el.style.opacity='1';
   el.style.transform='none';
+  el.style.filter='none';
 };
 const revealNow=(scope=document)=>{
   if(scope.classList?.contains('reveal'))revealInstant(scope);
@@ -1080,13 +1172,58 @@ window.addEventListener('hashchange',()=>{
   if(window.location.hash)scrollToHash(window.location.hash,'auto');
 });
 
-// reveal on scroll
-const io=new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{if(e.isIntersecting){animateReveal(e.target);io.unobserve(e.target)}});
-},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
-document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-window.addEventListener('load',()=>setTimeout(revealVisible,450));
-window.addEventListener('scroll',revealVisible,{passive:true});
+// reveal on scroll and counter motion
+const easeOutQuart=(t)=>1-Math.pow(1-t,4);
+const animateCounter=(num,instant=false)=>{
+  if(!num||num.dataset.counted==='true')return;
+  const html=num.dataset.finalHtml||num.innerHTML;
+  const match=html.match(/\d+/);
+  if(!match)return;
+  num.dataset.counted='true';
+  const target=Number(match[0]);
+  const suffix=html.replace(match[0],'');
+  if(instant||prefersReducedMotion){
+    num.innerHTML=html;
+    return;
+  }
+  const duration=980+Math.min(target,30)*10;
+  const start=performance.now();
+  const tick=(now)=>{
+    const progress=Math.min((now-start)/duration,1);
+    const value=Math.round(target*easeOutQuart(progress));
+    num.innerHTML=`${value}${suffix}`;
+    if(progress<1)requestAnimationFrame(tick);
+    else num.innerHTML=html;
+  };
+  num.innerHTML=`0${suffix}`;
+  requestAnimationFrame(tick);
+};
+if(prefersReducedMotion||!('IntersectionObserver' in window)){
+  document.querySelectorAll('.reveal').forEach(revealInstant);
+  document.querySelectorAll('.stat .num').forEach(num=>animateCounter(num,true));
+}else{
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        animateReveal(e.target);
+        io.unobserve(e.target);
+      }
+    });
+  },{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  const counterIo=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        animateCounter(e.target);
+        counterIo.unobserve(e.target);
+      }
+    });
+  },{threshold:.55});
+  document.querySelectorAll('.stat .num').forEach(num=>counterIo.observe(num));
+  window.addEventListener('load',()=>setTimeout(revealVisible,450));
+  window.addEventListener('scroll',revealVisible,{passive:true});
+}
 
 // project drawings lightbox
 const lightbox=document.getElementById('projectLightbox');
@@ -1205,7 +1342,7 @@ document.querySelectorAll('[data-lead-form]').forEach(form=>{
   document.addEventListener('click',(event)=>{
     if(phoneControl&&!phoneControl.contains(event.target))closePhoneMenu();
   });
-  form.addEventListener('submit',(event)=>{
+  form.addEventListener('submit',async (event)=>{
     event.preventDefault();
     if(phoneField){
       updatePhone();
@@ -1225,9 +1362,29 @@ document.querySelectorAll('[data-lead-form]').forEach(form=>{
       form.reportValidity();
       return;
     }
-    form.reset();
-    if(phoneOptions[0])selectPhoneCode(phoneOptions[0],false);
-    if(status){status.className='form-status success';status.textContent='Спасибо! Заявка отправлена, мы скоро свяжемся с вами.'}
+    const submitButton=form.querySelector('button[type="submit"]');
+    if(location.protocol==='file:'){
+      if(status){status.className='form-status error';status.textContent='Локально через file:// заявка не отправится. Нужно открыть сайт на хостинге или через PHP-сервер.'}
+      return;
+    }
+    try{
+      if(status){status.className='form-status';status.textContent='Отправляем заявку...'}
+      if(submitButton)submitButton.disabled=true;
+      const response=await fetch(form.action,{
+        method:'POST',
+        body:new FormData(form),
+        headers:{'Accept':'application/json'}
+      });
+      const result=await response.json().catch(()=>({ok:false,message:'Сервер вернул некорректный ответ.'}));
+      if(!response.ok||!result.ok)throw new Error(result.message||'Не удалось отправить заявку.');
+      form.reset();
+      if(phoneOptions[0])selectPhoneCode(phoneOptions[0],false);
+      if(status){status.className='form-status success';status.textContent='Спасибо! Заявка отправлена, мы скоро свяжемся с вами.'}
+    }catch(error){
+      if(status){status.className='form-status error';status.textContent=error.message||'Не удалось отправить заявку. Попробуйте позже.'}
+    }finally{
+      if(submitButton)submitButton.disabled=false;
+    }
   });
 });
 </script>
