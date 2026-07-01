@@ -55,7 +55,8 @@ a{color:inherit;text-decoration:none}
 .eyebrow::before{content:"";width:28px;height:1px;background:var(--gold);display:inline-block}
 h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.12;letter-spacing:-.005em}
 .section{padding:120px 0}
-section[id],#lead-form{scroll-margin-top:84px}
+:root{--anchor-offset:92px}
+section[id],#lead-form{scroll-margin-top:var(--anchor-offset)}
 .section-head{max-width:720px;margin-bottom:64px}
 .section-head h2{font-size:clamp(30px,4.4vw,52px);margin:18px 0 0}
 .section-head p{margin-top:20px;font-size:18px;color:var(--ink-soft);max-width:620px}
@@ -953,15 +954,34 @@ const stopBackgroundScroll=(event)=>{
   event.preventDefault();
 };
 burger.addEventListener('click',()=>setMenuOpen(!navLinks.classList.contains('open')));
-window.addEventListener('resize',()=>{if(window.innerWidth>1080)setMenuOpen(false)});
+window.addEventListener('resize',()=>{if(window.innerWidth>1080)setMenuOpen(false);syncAnchorOffset()});
 document.addEventListener('touchmove',stopBackgroundScroll,{passive:false});
 document.addEventListener('wheel',stopBackgroundScroll,{passive:false});
 
 // consistent in-page navigation under the fixed header
+const syncAnchorOffset=()=>{
+  const gap=window.innerWidth<=680?18:window.innerWidth<=1080?20:22;
+  const offset=Math.ceil(header.getBoundingClientRect().height+gap);
+  document.documentElement.style.setProperty('--anchor-offset',`${offset}px`);
+  return offset;
+};
 const getAnchorOffset=()=>{
-  if(window.innerWidth<=680)return 70;
-  if(window.innerWidth<=1080)return 78;
-  return 84;
+  return syncAnchorOffset();
+};
+const getAnchorNudge=(hash)=>{
+  const id=decodeURIComponent((hash||'').replace(/^#/,''));
+  const compact=window.innerWidth<=680;
+  const tablet=window.innerWidth<=1080;
+  const nudges={
+    services:compact?48:tablet?50:52,
+    categories:compact?58:tablet?60:62,
+    process:compact?22:tablet?22:20,
+    brands:compact?34:tablet?36:38,
+    projects:compact?84:tablet?88:92,
+    contact:compact?74:tablet?78:82,
+    'lead-form':compact?74:tablet?78:82
+  };
+  return nudges[id]||0;
 };
 const getAnchorTarget=(hash)=>{
   if(!hash||hash==='#')return null;
@@ -1002,13 +1022,18 @@ const scrollToHash=(hash,behavior='smooth')=>{
   }
   const target=getAnchorTarget(hash);
   if(!target)return;
-  const top=Math.max(0,target.getBoundingClientRect().top+window.pageYOffset-getAnchorOffset());
+  const nudge=getAnchorNudge(hash);
+  const getTop=()=>Math.max(0,target.getBoundingClientRect().top+window.pageYOffset-getAnchorOffset()+nudge);
+  const top=getTop();
   window.scrollTo({top,behavior});
-  requestAnimationFrame(()=>{
+  const afterScroll=()=>{
     revealNow(target);
     onScroll();
-  });
+    syncAnchorOffset();
+  };
+  requestAnimationFrame(afterScroll);
 };
+syncAnchorOffset();
 document.querySelectorAll('a[href^="#"]').forEach(link=>{
   link.addEventListener('click',(event)=>{
     const hash=link.getAttribute('href');
