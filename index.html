@@ -447,9 +447,11 @@ body.lightbox-lock{overflow:hidden}
     flex-direction:column;align-items:flex-start;justify-content:center;gap:26px;padding:40px;
     overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;
     transform:translateX(100%);visibility:hidden;pointer-events:none;
-    transition:transform .4s ease,visibility 0s linear .4s;z-index:140;
+    transition:visibility 0s linear .4s;z-index:140;
   }
-  .nav-links.open{transform:none;visibility:visible;pointer-events:auto;transition:transform .4s ease}
+  .nav-links.open{transform:none;visibility:visible;pointer-events:auto;transition:none}
+  body.nav-transitioning .nav-links{transition:transform .4s ease,visibility 0s linear .4s}
+  body.nav-transitioning .nav-links.open{transition:transform .4s ease}
   .nav-links a{color:#fff !important;font-size:20px;font-family:var(--serif)}
   .nav-links .btn{margin-top:10px}
   .nav-links .nav-drawer-cta{
@@ -503,9 +505,11 @@ body.lightbox-lock{overflow:hidden}
     flex-direction:column;align-items:flex-start;justify-content:center;gap:26px;padding:40px;
     overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;
     transform:translateX(100%);visibility:hidden;pointer-events:none;
-    transition:transform .4s ease,visibility 0s linear .4s;z-index:140;
+    transition:visibility 0s linear .4s;z-index:140;
   }
-  .nav-links.open{transform:none;visibility:visible;pointer-events:auto;transition:transform .4s ease}
+  .nav-links.open{transform:none;visibility:visible;pointer-events:auto;transition:none}
+  body.nav-transitioning .nav-links{transition:transform .4s ease,visibility 0s linear .4s}
+  body.nav-transitioning .nav-links.open{transition:transform .4s ease}
   .nav-links a{color:#fff !important;font-size:20px;font-family:var(--serif)}
   .nav-links .btn{margin-top:10px}
   .nav-links .nav-drawer-cta{
@@ -940,9 +944,15 @@ onScroll();window.addEventListener('scroll',onScroll,{passive:true});
 // mobile menu
 const burger=document.getElementById('burger');
 const navLinks=document.getElementById('navLinks');
+let menuTransitionTimer;
 const setMenuOpen=(open)=>{
   const isOpen=navLinks.classList.contains('open');
   if(open===isOpen)return;
+  clearTimeout(menuTransitionTimer);
+  document.body.classList.add('nav-transitioning');
+  menuTransitionTimer=setTimeout(()=>document.body.classList.remove('nav-transitioning'),430);
+  // Apply the transition class before changing transform.
+  void navLinks.offsetWidth;
   burger.classList.toggle('open',open);
   navLinks.classList.toggle('open',open);
   document.body.classList.toggle('nav-open',open);
