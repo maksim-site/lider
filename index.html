@@ -4,14 +4,15 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Компания «Лидер»: импорт оборудования для виноделия под ключ</title>
-<meta name="description" content="Доставка из-за рубежа любого винодельческого оборудования и запасных частей. Полный цикл ВЭД под ключ: выкуп, логистика, растаможка, сертификация и пусконаладка." />
+<meta name="description" content="Поставка винодельческого оборудования и запасных частей из-за рубежа. Полный цикл ВЭД под ключ: подбор, закупка, логистика, таможенное оформление, сертификация и пусконаладка." />
 <link rel="canonical" href="https://lider-vino.ru/" />
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Лидер — поставка оборудования для виноделия под ключ" />
-<meta property="og:description" content="Подбор, выкуп, доставка, растаможка и пусконаладка винодельческого оборудования и запчастей из Европы. Своя логистика и таможня." />
+<meta property="og:description" content="Подбор, закупка, доставка, таможенное оформление и пусконаладка винодельческого оборудования и запчастей из Европы. Логистика и таможенное сопровождение." />
 <meta property="og:url" content="https://lider-vino.ru/" />
 <meta property="og:image" content="https://lider-vino.ru/assets/vineyard.jpg" />
 <meta name="theme-color" content="#6B1F2A" />
+<link rel="preload" as="image" href="assets/vineyard.webp" type="image/webp" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -37,6 +38,10 @@
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:84px}
+html.lenis,
+html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lenis.lenis-stopped{overflow:hidden}
 body{
   font-family:var(--sans);
   background:var(--cream);
@@ -47,6 +52,7 @@ body{
 }
 img{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
+h1,h2,h3,p,blockquote,li,a{overflow-wrap:break-word}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px}
 .eyebrow{
   font-size:12px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
@@ -65,23 +71,29 @@ section[id],#lead-form{scroll-margin-top:var(--anchor-offset)}
 header{
   position:fixed;top:0;left:0;right:0;z-index:100;
   transition:background .4s ease, box-shadow .4s ease, padding .4s ease;
-  padding:22px 0;
+  padding:16px 0;
 }
-header.scrolled{background:rgba(244,239,230,.92);backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line-soft);padding:14px 0}
+header.scrolled{
+  background:rgba(244,239,230,.78);
+  backdrop-filter:saturate(124%) blur(26px);
+  -webkit-backdrop-filter:saturate(124%) blur(26px);
+  box-shadow:0 1px 0 rgba(28,24,21,.09),0 18px 42px -30px rgba(28,24,21,.38);
+  padding:10px 0;
+}
 .nav{display:flex;align-items:center;justify-content:space-between;gap:24px}
-.brand{display:flex;align-items:center;gap:13px}
-.brand .mark{width:47px;height:47px;display:grid;place-items:center;flex:none;padding:3px 5px 3px 3px}
-.brand .mark img{height:39px;width:auto;filter:none}
+.brand{display:flex;align-items:center;gap:11px}
+.brand .mark{width:42px;height:42px;display:grid;place-items:center;flex:none;padding:3px 5px 3px 3px}
+.brand .mark img{height:35px;width:auto;filter:none}
 .brand-text{line-height:1}
-.brand-text .name{display:block;font-family:var(--serif);font-size:26px;font-weight:600;letter-spacing:-.01em;text-transform:none}
-.brand-text .sub{display:block;margin-top:5px;font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-faint);font-weight:700}
+.brand-text .name{display:block;font-family:var(--serif);font-size:24px;font-weight:600;letter-spacing:-.01em;text-transform:none}
+.brand-text .sub{display:block;margin-top:4px;font-size:8.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-faint);font-weight:700}
 header:not(.scrolled) .brand-text .name,
 header:not(.scrolled) .brand-text .sub{color:#fff}
 header:not(.scrolled) .brand .mark img{filter:brightness(0) invert(1)}
 header:not(.scrolled) .nav-links a{color:rgba(255,255,255,.9)}
 header:not(.scrolled) .nav-links a:hover{color:#fff}
 header:not(.scrolled) .nav-links a:not(.btn)::after{background:var(--gold-soft)}
-.nav-links{display:flex;align-items:center;gap:34px}
+.nav-links{display:flex;align-items:center;gap:28px}
 .nav-links a{font-size:14.5px;font-weight:500;color:var(--ink-soft);transition:color .2s,transform .24s ease;position:relative;white-space:nowrap}
 .nav-links a:not(.btn)::after{
   content:"";position:absolute;left:0;right:0;bottom:-8px;height:1px;background:var(--wine);
@@ -91,7 +103,7 @@ header:not(.scrolled) .nav-links a:not(.btn)::after{background:var(--gold-soft)}
 .nav-links a:not(.btn):hover::after{transform:scaleX(1)}
 .nav-links a:hover{color:var(--wine)}
 .nav-links a.btn-primary,.nav-links a.btn-primary:hover,.nav-mobile-cta,.nav-mobile-cta:hover,.nav-drawer-cta,.nav-drawer-cta:hover{color:#fff}
-.nav-mobile-cta{display:inline-flex;padding:12px 22px;z-index:130;position:relative;overflow:hidden}
+.nav-mobile-cta{display:inline-flex;padding:11px 20px;z-index:130;position:relative;overflow:hidden}
 .nav-links .nav-drawer-cta{display:none}
 body.nav-open{overflow:hidden;touch-action:none}
 body.nav-open .nav-mobile-cta{opacity:0;visibility:hidden;pointer-events:none}
@@ -121,6 +133,13 @@ header:not(.scrolled) .nav-phone:hover{color:var(--gold-soft)}
 .burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px}
 .burger span{width:24px;height:2px;background:var(--ink);transition:.3s}
 header:not(.scrolled) .burger span{background:#fff}
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible{
+  outline:2px solid var(--gold-soft);
+  outline-offset:3px;
+}
 
 /* ---------- HERO ---------- */
 .hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden}
@@ -181,6 +200,18 @@ header:not(.scrolled) .burger span{background:#fff}
 .svc h3{font-size:21px;margin:14px 0 10px;font-family:var(--sans);font-weight:600;letter-spacing:0}
 .svc p{font-size:15px;color:var(--ink-soft)}
 
+/* ---------- FIT / CLIENT TYPES ---------- */
+.fit{background:var(--paper)}
+.info-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.info-card{
+  background:var(--cream);border:1px solid var(--line-soft);border-radius:4px;
+  padding:28px 24px;transition:.3s;min-height:100%;
+}
+.info-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);background:#fff;border-color:transparent}
+.info-card .tag{font-family:var(--serif);font-size:20px;color:var(--gold);font-weight:600}
+.info-card h3{font-family:var(--sans);font-weight:700;letter-spacing:0;font-size:18px;margin:12px 0 9px;line-height:1.25}
+.info-card p{font-size:14.5px;color:var(--ink-soft);line-height:1.55}
+
 /* ---------- CATEGORIES ---------- */
 .cats{background:var(--paper)}
 .cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
@@ -233,6 +264,27 @@ header:not(.scrolled) .burger span{background:#fff}
 
 /* ---------- BRANDS ---------- */
 .brands{background:var(--paper)}
+.brand-feature-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:26px;
+}
+.brand-feature{
+  min-height:150px;background:var(--cream);border:1px solid var(--line-soft);border-radius:4px;
+  padding:24px 22px;display:flex;flex-direction:column;justify-content:space-between;
+  transition:transform .28s ease,box-shadow .28s ease,border-color .28s ease,background .28s ease;
+}
+.brand-feature:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:transparent;background:#fff}
+.brand-feature .country{
+  font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:800;
+}
+.brand-feature strong{
+  display:block;margin-top:16px;font-family:var(--serif);font-size:clamp(24px,2.3vw,34px);
+  font-weight:600;line-height:1.05;color:var(--ink);letter-spacing:-.02em;
+}
+.brand-feature p{margin-top:14px;font-size:13.5px;color:var(--ink-soft);line-height:1.45}
+.brand-note{
+  margin:0 0 14px;font-size:13px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink-faint);font-weight:800;
+}
 .brand-wall{display:flex;flex-wrap:wrap;gap:12px}
 .brand-chip{
   border:1px solid var(--line);color:var(--ink-soft);font-weight:500;
@@ -254,6 +306,14 @@ header:not(.scrolled) .burger span{background:#fff}
 .contact-person .pname{font-family:var(--serif);font-size:23px;margin:6px 0 10px}
 .contact-person .row{display:flex;gap:22px;flex-wrap:wrap;font-size:15.5px;color:rgba(255,255,255,.9)}
 .contact-person .row a:hover{color:var(--gold-soft)}
+.calc-guide{
+  margin-top:34px;border-top:1px solid rgba(255,255,255,.2);padding-top:24px;
+  max-width:520px;
+}
+.calc-guide h3{font-family:var(--sans);font-weight:700;font-size:18px;letter-spacing:0;margin-bottom:14px;color:#fff}
+.calc-guide ul{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;list-style:none}
+.calc-guide li{display:flex;gap:9px;font-size:13.5px;color:rgba(255,255,255,.76);line-height:1.45}
+.calc-guide li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--gold-soft);flex:none;margin-top:8px}
 .form{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:4px;padding:38px;backdrop-filter:blur(6px)}
 .form h3{font-family:var(--sans);font-weight:600;font-size:21px;letter-spacing:0;margin-bottom:6px}
 .form .fhint{font-size:14px;color:rgba(255,255,255,.65);margin-bottom:24px}
@@ -327,11 +387,23 @@ header:not(.scrolled) .burger span{background:#fff}
 .form .btn:hover{background:var(--gold-soft);color:var(--ink)}
 .form .btn:disabled{opacity:.68;cursor:wait}
 .form .priv{font-size:12px;color:rgba(255,255,255,.5);margin-top:14px;text-align:center}
+.field input:focus-visible,
+.field textarea:focus-visible{
+  outline:2px solid var(--gold-soft);
+  outline-offset:3px;
+}
 .field input.is-invalid{border-color:#ffb4a8;background:rgba(255,180,168,.12)}
 .form-status{min-height:20px;margin-top:12px;font-size:13px;color:rgba(255,255,255,.72);text-align:center}
 .form-status.success{color:var(--gold-soft)}
 .form-status.error{color:#ffcabf}
-.hp-field{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none}
+.hp-field{
+  position:absolute!important;
+  width:1px!important;height:1px!important;
+  margin:-1px!important;padding:0!important;border:0!important;
+  clip:rect(0 0 0 0)!important;clip-path:inset(50%)!important;
+  overflow:hidden!important;white-space:nowrap!important;opacity:0!important;
+  pointer-events:none!important;
+}
 
 /* ---------- FOOTER ---------- */
 footer{background:var(--ink);color:rgba(255,255,255,.66);padding:70px 0 36px}
@@ -343,6 +415,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.66);padding:70px 0 36px}
 .foot-col h4{color:#fff;font-family:var(--sans);font-size:13px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:18px;font-weight:600}
 .foot-col a,.foot-col p{display:block;font-size:14.5px;margin-bottom:11px;transition:.2s}
 .foot-col a:hover{color:#fff}
+.foot-col .policy-link{margin-top:18px;color:rgba(255,255,255,.82)}
 .foot-bottom{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-top:26px;font-size:13px;color:var(--ink-faint)}
 
 /* ---------- MOTION ---------- */
@@ -351,17 +424,26 @@ footer{background:var(--ink);color:rgba(255,255,255,.66);padding:70px 0 36px}
   to{opacity:1;transform:none;filter:blur(0)}
 }
 @keyframes heroImageIn{
-  from{transform:scale(1.075)}
-  to{transform:scale(1.02)}
+  from{transform:translate3d(0,var(--hero-parallax-y,0px),0) scale(1.075)}
+  to{transform:translate3d(0,var(--hero-parallax-y,0px),0) scale(1.045)}
 }
 @keyframes lineGrow{
   from{transform:scaleX(0);opacity:.4}
   to{transform:scaleX(1);opacity:1}
 }
+@keyframes routeDash{
+  to{stroke-dashoffset:-64}
+}
+@keyframes routePulse{
+  0%,100%{transform:scale(.75);opacity:.12}
+  45%{transform:scale(1.08);opacity:.26}
+}
 .hero-bg img{
-  transform:scale(1.02);
+  --hero-parallax-y:0px;
+  transform:translate3d(0,var(--hero-parallax-y),0) scale(1.045);
   transform-origin:center;
   animation:heroImageIn 1800ms cubic-bezier(.16,1,.3,1) both;
+  will-change:transform;
 }
 .hero .eyebrow,
 .hero h1,
@@ -393,8 +475,11 @@ footer{background:var(--ink);color:rgba(255,255,255,.66);padding:70px 0 36px}
 .reveal.in .eyebrow::before{animation:lineGrow .7s cubic-bezier(.16,1,.3,1) both}
 .step.reveal::after{transform:scaleX(0);transform-origin:left;transition:transform .72s cubic-bezier(.16,1,.3,1) .22s}
 .step.reveal.in::after{transform:scaleX(1)}
+.route-map.reveal .route-flow{stroke-dasharray:14 18;stroke-dashoffset:64}
+.route-map.reveal.in .route-flow{animation:routeDash 2.8s linear infinite}
+.route-map.reveal.in .route-pulse{animation:routePulse 2.9s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
 @media(hover:hover){
-  .svc,.cat,.case,.proj,.brand-chip,.btn,.nav-phone{will-change:transform}
+  .svc,.cat,.case,.proj,.brand-chip,.btn,.nav-phone,.info-card,.supply-panel{will-change:transform}
   .svc:hover{transform:translateY(-4px);box-shadow:0 18px 42px -28px rgba(28,24,21,.32);position:relative;z-index:1}
   .brand-chip:hover{transform:translateY(-2px)}
   .parts-visual img,.adv-visual img{transition:transform .9s cubic-bezier(.16,1,.3,1)}
@@ -429,6 +514,61 @@ footer{background:var(--ink);color:rgba(255,255,255,.66);padding:70px 0 36px}
 .ownved .eyebrow{color:var(--gold-soft)}.ownved .eyebrow::before{background:var(--gold-soft)}
 .ownved h2{font-size:clamp(28px,3.8vw,44px);color:#fff;margin:16px 0 0}
 .ownved p{margin-top:20px;font-size:17px;color:rgba(255,255,255,.85);max-width:560px}
+
+/* ---------- DOCUMENTS / GEOGRAPHY ---------- */
+.supply-info{background:var(--paper)}
+.route-map{
+  margin:-28px 0 34px;
+  background:
+    linear-gradient(135deg,rgba(255,255,255,.56),rgba(255,255,255,0) 44%),
+    linear-gradient(180deg,rgba(107,31,42,.045),rgba(176,137,79,.055)),
+    var(--cream);
+  border:1px solid var(--line-soft);
+  border-radius:4px;padding:26px 28px 24px;overflow:hidden;position:relative;
+}
+.route-map::before{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.58;
+  background:
+    linear-gradient(90deg,rgba(28,24,21,.045) 1px,transparent 1px),
+    linear-gradient(180deg,rgba(28,24,21,.035) 1px,transparent 1px);
+  background-size:72px 72px;
+  mask-image:linear-gradient(90deg,transparent,black 14%,black 86%,transparent);
+}
+.route-svg{position:relative;z-index:1;width:100%;height:auto;display:block;margin-bottom:18px}
+.route-base{fill:none;stroke:rgba(28,24,21,.14);stroke-width:4;stroke-linecap:round}
+.route-flow{fill:none;stroke:var(--wine);stroke-width:3;stroke-linecap:round}
+.route-node{fill:var(--paper);stroke:var(--wine);stroke-width:2}
+.route-pulse{fill:var(--wine);opacity:.14}
+.route-callout{fill:none;stroke:rgba(107,31,42,.22);stroke-width:1.2;stroke-linecap:round}
+.route-svg-label .halo{fill:rgba(255,255,255,.62);stroke:rgba(107,31,42,.11)}
+.route-svg-label text{font-family:var(--sans);text-anchor:middle}
+.route-svg-label .kicker{font-size:10px;letter-spacing:2px;text-transform:uppercase;fill:var(--gold);font-weight:800}
+.route-svg-label .main{font-size:15px;fill:var(--ink);font-weight:800}
+.route-stops{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;position:relative;z-index:1}
+.route-stop{
+  background:rgba(255,255,255,.48);border:1px solid var(--line-soft);border-radius:3px;
+  padding:14px 14px 13px;
+}
+.route-stop span{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:800}
+.route-stop b{display:block;margin-top:5px;font-size:14px;line-height:1.3;color:var(--ink)}
+.supply-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.supply-panel{
+  background:var(--cream);border:1px solid var(--line-soft);border-radius:4px;
+  padding:36px 34px;transition:.3s;
+}
+.supply-panel:hover{transform:translateY(-3px);box-shadow:var(--shadow);background:#fff;border-color:transparent}
+.supply-panel h3{font-family:var(--sans);font-size:22px;font-weight:700;letter-spacing:0;margin-bottom:14px}
+.supply-panel p{font-size:15px;color:var(--ink-soft);margin-bottom:22px;max-width:520px}
+.supply-list{display:grid;gap:12px;list-style:none}
+.supply-list li{display:flex;gap:11px;align-items:flex-start;font-size:15px;color:var(--ink)}
+.supply-list li::before{
+  content:"";width:7px;height:7px;border-radius:50%;background:var(--wine);flex:none;margin-top:10px;
+}
+.geo-tags{display:flex;flex-wrap:wrap;gap:10px}
+.geo-tags span{
+  border:1px solid var(--line);border-radius:40px;padding:8px 13px;
+  font-size:13.5px;color:var(--ink-soft);background:rgba(255,255,255,.48);
+}
 
 /* ---------- CASES ---------- */
 .cases{background:var(--cream)}
@@ -467,6 +607,10 @@ footer{background:var(--ink);color:rgba(255,255,255,.66);padding:70px 0 36px}
 .proj-spec{display:inline-block;font-weight:700;font-size:13px;letter-spacing:.03em;color:var(--wine);background:var(--cream);border:1px solid var(--line);border-radius:40px;padding:5px 14px;margin-bottom:14px}
 .proj h3{font-family:var(--sans);font-weight:700;font-size:18px;letter-spacing:0}
 .proj p{margin-top:8px;font-size:14px;color:var(--ink-soft);line-height:1.5}
+.proj-meta{margin-top:18px;display:grid;gap:10px}
+.proj-meta div{border-top:1px solid var(--line-soft);padding-top:10px}
+.proj-meta dt{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);font-weight:800;margin-bottom:3px}
+.proj-meta dd{font-size:13px;color:var(--ink-soft);line-height:1.45}
 .lightbox{
   position:fixed;inset:0;z-index:300;background:rgba(18,12,10,.88);
   display:grid;place-items:center;padding:28px;opacity:0;pointer-events:none;
@@ -474,17 +618,39 @@ footer{background:var(--ink);color:rgba(255,255,255,.66);padding:70px 0 36px}
 }
 .lightbox.open{opacity:1;pointer-events:auto}
 .lightbox-inner{position:relative;width:min(1120px,calc(100vw - 56px));max-height:calc(100vh - 56px);display:flex;flex-direction:column;align-items:center;gap:12px}
+.lightbox-stage{position:relative;width:100%;display:grid;place-items:center}
 .lightbox img{width:auto;height:auto;max-width:100%;max-height:min(76vh,760px);object-fit:contain;background:#fff;box-shadow:0 28px 80px rgba(0,0,0,.45)}
+.lightbox-caption-wrap{
+  width:100%;display:flex;justify-content:space-between;align-items:flex-start;gap:18px;
+  color:rgba(255,255,255,.82);font-size:14px;
+}
 .lightbox-caption{color:rgba(255,255,255,.82);font-size:14px}
+.lightbox-count{flex:none;color:rgba(255,255,255,.58);font-size:13px;white-space:nowrap}
 .lightbox-close{
   position:fixed;right:24px;top:24px;width:40px;height:40px;border:1px solid rgba(255,255,255,.35);
   border-radius:50%;background:rgba(255,255,255,.08);color:#fff;font-size:28px;line-height:1;
   cursor:pointer;display:grid;place-items:center;transition:.2s;
 }
 .lightbox-close:hover{background:#fff;color:var(--ink)}
+.lightbox-nav{
+  position:fixed;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.32);background:rgba(255,255,255,.08);color:#fff;
+  display:grid;place-items:center;cursor:pointer;transition:.2s;backdrop-filter:blur(6px);
+}
+.lightbox-nav:hover{background:#fff;color:var(--ink)}
+.lightbox-prev{left:24px}.lightbox-next{right:24px}
+.lightbox-nav svg{width:22px;height:22px}
 body.lightbox-lock{overflow:hidden}
 @media(max-width:980px){.proj-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:680px){.proj-grid{grid-template-columns:1fr}.lightbox{padding:14px}.lightbox-inner{width:100%;max-height:calc(100vh - 28px)}.lightbox img{max-height:72vh}.lightbox-close{right:14px;top:14px}}
+@media(max-width:680px){
+  .proj-grid{grid-template-columns:1fr}.lightbox{padding:14px}
+  .lightbox-inner{width:100%;max-height:calc(100vh - 28px)}
+  .lightbox img{max-height:72vh}.lightbox-close{right:14px;top:14px}
+  .lightbox-nav{width:40px;height:40px;top:auto;bottom:18px;transform:none}
+  .lightbox-prev{left:18px}.lightbox-next{right:18px}
+  .lightbox-caption-wrap{padding:0 54px;align-items:center}
+  .lightbox-count{font-size:12px}
+}
 
 /* responsive for new blocks */
 @media(max-width:980px){.case-grid{grid-template-columns:repeat(2,1fr)}}
@@ -539,15 +705,22 @@ body.lightbox-lock{overflow:hidden}
 @media(max-width:980px){
   .stats-grid{grid-template-columns:repeat(2,1fr);gap:40px 0}
   .stat:nth-child(3){border-left:none}
-  .svc-grid,.cat-grid{grid-template-columns:repeat(2,1fr)}
+  .svc-grid,.cat-grid,.info-grid{grid-template-columns:repeat(2,1fr)}
+  .brand-feature-grid{grid-template-columns:repeat(2,1fr)}
   .steps{grid-template-columns:repeat(2,1fr)}
   .step:nth-child(4n)::after{display:block}
   .step:nth-child(2n)::after{display:none}
-  .adv-grid,.contact .wrap,.foot-top{grid-template-columns:1fr;gap:42px}
+  .adv-grid,.contact .wrap{grid-template-columns:1fr;gap:42px}
+  .supply-grid{grid-template-columns:1fr}
+  .route-stops{grid-template-columns:repeat(2,1fr)}
+  .foot-top{grid-template-columns:1fr 1fr;gap:38px 34px}
+  .foot-brand{grid-column:1/-1}
   .adv-visual{min-height:360px}
 }
 @media(max-width:680px){
   .wrap{padding:0 20px}
+  .eyebrow{display:flex;flex-wrap:wrap;line-height:1.5;letter-spacing:.16em}
+  .eyebrow::before{flex:0 0 28px}
   .nav{gap:12px}
   .brand{gap:9px}
   .brand .mark{width:40px;height:40px;padding:3px 5px 3px 3px}
@@ -577,7 +750,10 @@ body.lightbox-lock{overflow:hidden}
   .burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);background:#fff}
   .burger.open span:nth-child(2){opacity:0}
   .burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);background:#fff}
-  .svc-grid,.cat-grid,.stats-grid{grid-template-columns:1fr}
+  .svc-grid,.cat-grid,.stats-grid,.info-grid,.brand-feature-grid{grid-template-columns:1fr}
+  .brand-feature{min-height:auto;padding:22px}
+  .brand-feature strong{font-size:27px}
+  .brand-note{font-size:11.5px;line-height:1.4}
   .steps{grid-template-columns:1fr;gap:48px}
   .stat + .stat{border-left:none;border-top:1px solid rgba(255,255,255,.16);padding-top:36px}
   .step::after{display:none !important}
@@ -590,6 +766,9 @@ body.lightbox-lock{overflow:hidden}
   .hero-meta .wrap{flex-direction:column;gap:16px;align-items:flex-start;border-color:rgba(255,255,255,.18)}
   .hero{min-height:auto;display:block}
   .hero-inner{padding-top:120px;padding-bottom:0;max-width:none}
+  .hero h1{font-size:clamp(34px,10vw,42px);max-width:100%;overflow-wrap:normal}
+  .hero .lead{max-width:100%;font-size:15.5px;line-height:1.55;overflow-wrap:break-word}
+  .manifesto blockquote{max-width:100%;overflow-wrap:break-word}
   .form{padding:26px 22px}
   .section{padding:64px 0}
   .hero-actions{flex-direction:column;align-items:stretch;gap:12px}
@@ -600,7 +779,33 @@ body.lightbox-lock{overflow:hidden}
   .ownved .big{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
   .parts-visual{min-height:200px}
   .stat .num{font-size:clamp(40px,12vw,54px)}
-  .cat,.svc,.case{padding:24px 22px}
+  .cat,.svc,.case,.info-card,.supply-panel{padding:24px 22px}
+  .route-map{margin:-16px 0 26px;padding:20px 18px}
+  .route-svg{margin-bottom:14px}
+  .route-stops{grid-template-columns:1fr 1fr;gap:9px}
+  .route-svg-label,.route-callout{display:none}
+  .route-stop{padding:12px 11px}
+  .route-stop b{font-size:12.5px}
+  .calc-guide ul{grid-template-columns:1fr}
+  footer{padding:54px 0 30px}
+  .foot-top{
+    grid-template-columns:minmax(104px,.72fr) minmax(0,1.28fr);
+    gap:28px 18px;
+    padding-bottom:30px;
+  }
+  .foot-brand p{margin-top:16px}
+  .foot-col h4{margin-bottom:14px;font-size:11.5px;letter-spacing:.12em}
+  .foot-col a,.foot-col p{
+    display:block;
+    margin-bottom:10px;
+    font-size:clamp(12.5px,3.35vw,14px);
+    line-height:1.32;
+    overflow-wrap:anywhere;
+  }
+  .foot-bottom{padding-top:20px;gap:8px}
+}
+@media(max-width:680px){
+  .nav-mobile-cta{display:none}
 }
 </style>
 <noscript><style>.reveal{opacity:1 !important;transform:none !important;filter:none !important}</style></noscript>
@@ -611,7 +816,7 @@ body.lightbox-lock{overflow:hidden}
 <header id="header">
   <div class="wrap nav">
     <a href="#" class="brand" aria-label="Компания Лидер">
-      <span class="mark"><img src="assets/lion-black.png" alt="" /></span>
+      <span class="mark"><img src="assets/lion-black.png" alt="" width="186" height="234" /></span>
       <span class="brand-text">
         <span class="name">Лидер</span>
         <span class="sub">импорт · виноделие</span>
@@ -628,7 +833,7 @@ body.lightbox-lock{overflow:hidden}
     </nav>
     <a href="#lead-form" class="btn btn-primary nav-mobile-cta">Получить расчёт</a>
     <a href="tel:+79119023763" class="nav-phone">+7 (911) 902-37-63</a>
-    <button class="burger" id="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+    <button class="burger" id="burger" aria-label="Меню" aria-controls="navLinks" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </header>
 
@@ -637,13 +842,13 @@ body.lightbox-lock{overflow:hidden}
   <div class="hero-bg">
     <picture>
       <source srcset="assets/vineyard.webp" type="image/webp" />
-      <img src="assets/vineyard.jpg" alt="Виноградник на закате" />
+      <img src="assets/vineyard.jpg" alt="Виноградник на закате" width="1800" height="1800" fetchpriority="high" />
     </picture>
   </div>
   <div class="wrap hero-inner">
     <span class="eyebrow">Компания «Лидер» · поставка оборудования</span>
-    <h1>Привезём и растаможим оборудование для&nbsp;вашего <em>вина</em></h1>
-    <p class="lead">Доставка из-за рубежа любого винодельческого оборудования и запасных частей. Берём на себя полный цикл ВЭД: от выкупа у европейского производителя до пусконаладки на вашей площадке.</p>
+    <h1>Поставка оборудования для&nbsp;вашего <em>вина</em></h1>
+    <p class="lead">Подберём, закупим, доставим, оформим и запустим оборудование для винодельческого производства. Работаем с линиями розлива, прессами, фильтрацией, ёмкостями, запчастями и комплектующими.</p>
     <div class="hero-actions">
       <a href="#lead-form" class="btn btn-primary">Получить консультацию</a>
       <a href="#categories" class="btn btn-light">Каталог оборудования</a>
@@ -653,7 +858,7 @@ body.lightbox-lock{overflow:hidden}
     <div class="wrap">
       <span class="item"><span class="dot"></span><b>30+</b> брендов Европы</span>
       <span class="item"><span class="dot"></span><b>Полный цикл</b> под ключ</span>
-      <span class="item"><span class="dot"></span>Поставляем даже <b>под санкциями</b></span>
+      <span class="item"><span class="dot"></span>Работаем с учётом <b>ограничений ВЭД</b></span>
     </div>
   </div>
 </section>
@@ -663,7 +868,7 @@ body.lightbox-lock{overflow:hidden}
   <div class="wrap reveal">
     <div class="glyph">”</div>
     <blockquote>Мы любим хорошее вино и знаем, сколько сил уходит на его создание. Поэтому берём на себя процессы, которые <em>отвлекают вас от главного</em>.</blockquote>
-    <p class="after">То, что для вас туманная сфера логистики и таможни, для нас это профильная работа. Можем взять её на себя как частично, так и полным циклом.</p>
+    <p class="after">То, что для вас сложная зона логистики и таможни, для нас — профильная работа. Можем взять её на себя как частично, так и полным циклом.</p>
   </div>
 </section>
 
@@ -672,17 +877,17 @@ body.lightbox-lock{overflow:hidden}
   <div class="wrap">
     <div class="reveal">
       <span class="eyebrow">Запчасти и расходники</span>
-      <h2>Запчасти и расходники для&nbsp;<em>любого оборудования</em></h2>
+      <h2>Запчасти и расходники для&nbsp;<em>промышленного оборудования</em></h2>
       <p class="ptext">Привезём оригинальные запасные части и расходные материалы для линий розлива, прессов, насосов, фильтрации и другого винодельческого оборудования. Не дадим производству встать из-за одной детали.</p>
       <ul>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M20 6 9 17l-5-5"/></svg>Оригинальные детали напрямую от производителей</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M20 6 9 17l-5-5"/></svg>Подбор по модели, даже если оборудование куплено не у нас</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M20 6 9 17l-5-5"/></svg>Оригинальные детали от производителей и проверенных поставщиков</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M20 6 9 17l-5-5"/></svg>Подбор по артикулу, модели оборудования или фото шильдика</li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M20 6 9 17l-5-5"/></svg>Срочные поставки, когда деталь нужна «ещё вчера»</li>
       </ul>
       <a href="#lead-form" class="btn btn-primary">Запросить запчасть</a>
     </div>
     <div class="parts-visual reveal d1">
-      <picture><source srcset="assets/tanks.webp" type="image/webp"><img src="assets/tanks.jpg" alt="Винодельческое оборудование"></picture>
+      <picture><source srcset="assets/tanks.webp" type="image/webp"><img src="assets/tanks.jpg" alt="Винодельческое оборудование" width="1100" height="1100" loading="lazy"></picture>
       <span class="ov">Оригинал и расходники под ваше производство</span>
     </div>
   </div>
@@ -698,6 +903,39 @@ body.lightbox-lock{overflow:hidden}
   </div>
 </section>
 
+<!-- FIT -->
+<section class="section fit">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Кому подходим</span>
+      <h2>Для виноделен, цехов розлива и производств, которым важен результат без лишней ВЭД-нагрузки</h2>
+      <p>Помогаем как с крупными поставками оборудования, так и с точечными задачами: заменить узел, подобрать расходники, дооснастить участок или запустить новую линию.</p>
+    </div>
+    <div class="info-grid">
+      <article class="info-card reveal">
+        <div class="tag">01</div>
+        <h3>Действующие винодельни</h3>
+        <p>Когда нужно быстро привезти оборудование, запасные части или расходники и не останавливать производство.</p>
+      </article>
+      <article class="info-card reveal d1">
+        <div class="tag">02</div>
+        <h3>Новые участки и линии</h3>
+        <p>Когда требуется подобрать состав линии, согласовать схему расстановки и довести поставку до запуска.</p>
+      </article>
+      <article class="info-card reveal d2">
+        <div class="tag">03</div>
+        <h3>Цеха розлива</h3>
+        <p>Работаем с розливом, укупоркой, этикетировкой, упаковкой и вспомогательными узлами линии.</p>
+      </article>
+      <article class="info-card reveal d3">
+        <div class="tag">04</div>
+        <h3>Техслужбы и закупки</h3>
+        <p>Подбираем позиции по модели, артикулу, фото шильдика или описанию проблемы на площадке.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
 <!-- SERVICES -->
 <section class="section services" id="services">
   <div class="wrap">
@@ -707,12 +945,12 @@ body.lightbox-lock{overflow:hidden}
       <p>Вы занимаетесь вином, мы берём на себя всё, что между европейским заводом и вашим цехом.</p>
     </div>
     <div class="svc-grid">
-      <div class="svc reveal"><div class="n">01</div><h3>Спроектируем производство</h3><p>Целиком или в пределах конкретного участка, под ваши задачи и площадь.</p></div>
+      <div class="svc reveal"><div class="n">01</div><h3>Подготовим схему участка</h3><p>Поможем спланировать линию или участок под ваши задачи, площадь и мощность.</p></div>
       <div class="svc reveal d1"><div class="n">02</div><h3>Подберём оборудование</h3><p>В точном соответствии с нуждами именно вашего производства.</p></div>
-      <div class="svc reveal d2"><div class="n">03</div><h3>Выкупим у поставщика</h3><p>Даже в условиях санкционного давления находим рабочие пути.</p></div>
+      <div class="svc reveal d2"><div class="n">03</div><h3>Организуем закупку</h3><p>Подбираем рабочую схему закупки и поставки с учётом актуальных ограничений.</p></div>
       <div class="svc reveal"><div class="n">04</div><h3>Доставим</h3><p>С оптимальным соотношением стоимости и сроков логистики.</p></div>
       <div class="svc reveal d1"><div class="n">05</div><h3>Засертифицируем</h3><p>Оформим все необходимые документы и сертификаты на товар.</p></div>
-      <div class="svc reveal d2"><div class="n">06</div><h3>Растаможим</h3><p>Внесём платежи и объяснимся с инспекторами ФТС на их языке.</p></div>
+      <div class="svc reveal d2"><div class="n">06</div><h3>Таможенное оформление</h3><p>Берём на себя оформление, платежи и коммуникацию с таможенными органами.</p></div>
       <div class="svc reveal"><div class="n">07</div><h3>Передадим по простому пакету</h3><p>Договор + УПД + ТН. Не нагружаем вас массивом документации ВЭД.</p></div>
       <div class="svc reveal d1"><div class="n">08</div><h3>Пусконаладка</h3><p>С привлечением аккредитованных зарубежных специалистов.</p></div>
       <div class="svc reveal d2"><div class="n">09</div><h3>Гарантийное сопровождение</h3><p>Остаёмся с вами в течение всего гарантийного периода.</p></div>
@@ -725,8 +963,8 @@ body.lightbox-lock{overflow:hidden}
   <div class="wrap">
     <div class="section-head reveal">
       <span class="eyebrow">Каталог оборудования</span>
-      <h2>Привезём и растаможим любое оборудование для виноделия</h2>
-      <p>От линий розлива до бочек, амфор и лабораторной химии. Если чего-то нет в списке, просто спросите: скорее всего, мы это возим.</p>
+      <h2>Поставляем оборудование и комплектующие для ключевых участков винодельческого производства</h2>
+      <p>От линий розлива до бочек, амфор и лабораторной химии. Если нужной позиции нет в списке, уточним возможность поставки под вашу задачу.</p>
     </div>
     <div class="cat-grid">
       <div class="cat reveal"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M9 3h6v4l-1 2v11a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V9L9 7z"/></svg><h3>Розлив, укупорка и упаковка</h3><div class="cat-brands">GAI, Robino &amp; Galandrino, Mas Pack, Acram, NERI, SEDAM Valentin</div></div>
@@ -756,9 +994,9 @@ body.lightbox-lock{overflow:hidden}
     <div class="steps">
       <div class="step reveal"><h3>Заявка</h3><p>Обсуждаем задачу, бюджет и сроки. Бесплатная консультация.</p></div>
       <div class="step reveal d1"><h3>Подбор и проект</h3><p>Подбираем оборудование и проектируем участок.</p></div>
-      <div class="step reveal d2"><h3>Выкуп</h3><p>Выкупаем товар у производителя, в т.ч. под санкциями.</p></div>
+      <div class="step reveal d2"><h3>Закупка</h3><p>Организуем закупку у производителя и сопровождаем поставку с учётом требований сторон и маршрута.</p></div>
       <div class="step reveal d3"><h3>Логистика</h3><p>Везём по оптимальному маршруту: цена и сроки.</p></div>
-      <div class="step reveal"><h3>Таможня</h3><p>Растаможка, платежи и диалог с ФТС берём на себя.</p></div>
+      <div class="step reveal"><h3>Таможня</h3><p>Оформление, платежи и коммуникацию с таможенными органами берём на себя.</p></div>
       <div class="step reveal d1"><h3>Сертификация</h3><p>Оформляем сертификаты и документы на товар.</p></div>
       <div class="step reveal d2"><h3>Пусконаладка</h3><p>Запуск с аккредитованными зарубежными инженерами.</p></div>
       <div class="step reveal d3"><h3>Гарантия</h3><p>Сопровождаем весь гарантийный период.</p></div>
@@ -771,12 +1009,93 @@ body.lightbox-lock{overflow:hidden}
   <div class="wrap">
     <div class="big reveal">
       <div class="n">12</div>
-      <div class="u">лет на таможенных<br>постах по стране</div>
+      <div class="u">лет опыта в таможенном<br>оформлении</div>
     </div>
     <div class="reveal d1">
       <span class="eyebrow">Своя логистика и таможня</span>
-      <h2>Растаможку и доставку ведём сами</h2>
-      <p>Логистику и таможенное оформление выполняет собственное профильное направление нашей группы. Поэтому весь путь от европейского завода до вашего цеха проходит внутри одной команды, без лишних посредников, а вы получаете товар с простым пакетом документов.</p>
+      <h2>Таможенное оформление и доставку ведём сами</h2>
+      <p>Логистику и таможенное оформление выполняет собственное профильное направление нашей группы. Поэтому путь от европейского завода до вашего цеха проходит внутри одной команды, без лишних посредников, а вы получаете понятный пакет документов.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DOCUMENTS / GEOGRAPHY -->
+<section class="section supply-info">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Документы и география</span>
+      <h2>Закрываем поставку так, чтобы бухгалтерии и производству было понятно, что происходит</h2>
+      <p>Собираем маршрут, документы и сроки под конкретную задачу: от одной запасной части до линии розлива с пусконаладкой.</p>
+    </div>
+    <div class="route-map reveal d1" aria-label="Маршрут поставки оборудования">
+      <svg class="route-svg" viewBox="0 0 960 190" role="img" aria-hidden="true">
+        <path class="route-base" d="M72 116 C205 32 290 46 404 112 S624 180 748 92 S884 54 916 92" />
+        <path class="route-flow" d="M72 116 C205 32 290 46 404 112 S624 180 748 92 S884 54 916 92" />
+        <path class="route-callout" d="M72 82v21" />
+        <path class="route-callout" d="M404 80v19" />
+        <path class="route-callout" d="M748 116v-11" />
+        <path class="route-callout" d="M916 60v19" />
+        <g class="route-svg-label" transform="translate(72 58)">
+          <rect class="halo" x="-47" y="-20" width="94" height="42" rx="4" />
+          <text class="kicker" y="-4">СТАРТ</text>
+          <text class="main" y="15">завод</text>
+        </g>
+        <g class="route-svg-label" transform="translate(404 56)">
+          <rect class="halo" x="-62" y="-20" width="124" height="42" rx="4" />
+          <text class="kicker" y="-4">ПАКЕТ</text>
+          <text class="main" y="15">документы</text>
+        </g>
+        <g class="route-svg-label" transform="translate(748 139)">
+          <rect class="halo" x="-58" y="-20" width="116" height="42" rx="4" />
+          <text class="kicker" y="-4">КОНТРОЛЬ</text>
+          <text class="main" y="15">таможня</text>
+        </g>
+        <g class="route-svg-label" transform="translate(916 36)">
+          <rect class="halo" x="-42" y="-20" width="84" height="42" rx="4" />
+          <text class="kicker" y="-4">ФИНИШ</text>
+          <text class="main" y="15">цех</text>
+        </g>
+        <circle class="route-pulse" cx="72" cy="116" r="30" />
+        <circle class="route-node" cx="72" cy="116" r="13" />
+        <circle class="route-pulse" cx="404" cy="112" r="30" style="animation-delay:.35s" />
+        <circle class="route-node" cx="404" cy="112" r="13" />
+        <circle class="route-pulse" cx="748" cy="92" r="30" style="animation-delay:.7s" />
+        <circle class="route-node" cx="748" cy="92" r="13" />
+        <circle class="route-pulse" cx="916" cy="92" r="30" style="animation-delay:1.05s" />
+        <circle class="route-node" cx="916" cy="92" r="13" />
+      </svg>
+      <div class="route-stops">
+        <div class="route-stop"><span>01</span><b>Европейский производитель</b></div>
+        <div class="route-stop"><span>02</span><b>Закупка и подготовка</b></div>
+        <div class="route-stop"><span>03</span><b>Логистика и оформление</b></div>
+        <div class="route-stop"><span>04</span><b>Передача на винодельне</b></div>
+      </div>
+    </div>
+    <div class="supply-grid">
+      <article class="supply-panel reveal">
+        <h3>Что получает клиент</h3>
+        <p>На стороне клиента остаётся простой комплект документов, а профильную ВЭД-документацию и оформление ведём мы.</p>
+        <ul class="supply-list">
+          <li>Договор поставки с российским юридическим лицом</li>
+          <li>УПД, товарная накладная и закрывающие документы</li>
+          <li>Сертификаты и разрешительные документы, если они требуются для позиции</li>
+          <li>Сопровождение по гарантийным вопросам после передачи оборудования</li>
+        </ul>
+      </article>
+      <article class="supply-panel reveal d1">
+        <h3>Откуда поставляем</h3>
+        <p>Работаем с европейскими производителями и проверенными поставщиками комплектующих, подбирая маршрут под сроки, бюджет и требования к товару.</p>
+        <div class="geo-tags">
+          <span>Италия</span>
+          <span>Франция</span>
+          <span>Германия</span>
+          <span>Португалия</span>
+          <span>Испания</span>
+          <span>Австрия</span>
+          <span>Швейцария</span>
+          <span>другие направления под запрос</span>
+        </div>
+      </article>
     </div>
   </div>
 </section>
@@ -792,7 +1111,7 @@ body.lightbox-lock{overflow:hidden}
       <div class="adv-list">
         <div class="adv-item">
           <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/><path d="M9 12l2 2 4-4"/></svg></span>
-          <div><h3>Работаем под санкциями</h3><p>Находим пути выкупа и доставки тогда, когда другие разводят руками.</p></div>
+          <div><h3>Работаем в условиях ограничений ВЭД</h3><p>Подбираем схему закупки, логистики и оформления с учётом актуальных требований.</p></div>
         </div>
         <div class="adv-item">
           <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l2.5 5 5.5.8-4 3.9 1 5.5L12 16l-5 2.6 1-5.5-4-3.9 5.5-.8z"/></svg></span>
@@ -804,14 +1123,14 @@ body.lightbox-lock{overflow:hidden}
         </div>
         <div class="adv-item">
           <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span>
-          <div><h3>Свой язык с ФТС</h3><p>Проходим импортное оформление без задержек и лишней нервотрёпки.</p></div>
+          <div><h3>Опыт таможенного сопровождения</h3><p>Берём на себя оформление, платежи, классификацию и коммуникацию с таможенными органами.</p></div>
         </div>
       </div>
     </div>
     <div class="adv-visual reveal d1">
       <picture>
         <source srcset="assets/cellar.webp" type="image/webp" />
-        <img src="assets/cellar.jpg" alt="Винный погреб с дубовыми бочками" />
+        <img src="assets/cellar.jpg" alt="Винный погреб с дубовыми бочками" width="1100" height="1100" loading="lazy" />
       </picture>
       <div class="badge">
         <div class="q">«Берём на себя то, что отвлекает вас от создания вина»</div>
@@ -826,9 +1145,32 @@ body.lightbox-lock{overflow:hidden}
   <div class="wrap">
     <div class="section-head reveal">
       <span class="eyebrow">Производители</span>
-      <h2>Работаем напрямую с европейскими брендами</h2>
-      <p>Оригинальное оборудование и запасные части от ведущих заводов Италии, Франции, Германии и других стран.</p>
+      <h2>Поставляем оборудование европейских производителей</h2>
+      <p>Оригинальное оборудование и комплектующие ведущих заводов Италии, Франции, Германии и других стран.</p>
     </div>
+    <div class="brand-feature-grid">
+      <article class="brand-feature reveal">
+        <span class="country">Италия</span>
+        <strong>GAI</strong>
+        <p>линии розлива, укупорка и упаковка</p>
+      </article>
+      <article class="brand-feature reveal d1">
+        <span class="country">Франция</span>
+        <strong>Bucher Vaslin</strong>
+        <p>прессы, переработка винограда и фильтрация</p>
+      </article>
+      <article class="brand-feature reveal d2">
+        <span class="country">Италия</span>
+        <strong>Diemme Enologia</strong>
+        <p>прессы, насосы и оборудование для винодельни</p>
+      </article>
+      <article class="brand-feature reveal d3">
+        <span class="country">Франция</span>
+        <strong>Nadalie</strong>
+        <p>бочки, буты и решения для выдержки вина</p>
+      </article>
+    </div>
+    <div class="brand-note reveal">Также работаем с производителями</div>
     <div class="brand-wall reveal">
       <span class="brand-chip">GAI</span><span class="brand-chip">Robino &amp; Galandrino</span><span class="brand-chip">Bucher Vaslin</span><span class="brand-chip">Diemme Enologia</span><span class="brand-chip">Milani</span><span class="brand-chip">Mas Pack</span><span class="brand-chip">Acram</span><span class="brand-chip">NERI</span><span class="brand-chip">XT-Vision</span><span class="brand-chip">Digital Control</span><span class="brand-chip">SEDAM Valentin</span><span class="brand-chip">Ragazzini</span><span class="brand-chip">Hobra</span><span class="brand-chip">Puleo</span><span class="brand-chip">Garbellotto</span><span class="brand-chip">Nadalie</span><span class="brand-chip">Vicard</span><span class="brand-chip">Cadus</span><span class="brand-chip">Tonnellerie Damy</span><span class="brand-chip">Marsannay</span><span class="brand-chip">Gamba</span><span class="brand-chip">ANA Selection</span><span class="brand-chip">de l'Adour</span><span class="brand-chip">OXO Line</span><span class="brand-chip">FOSS</span><span class="brand-chip">New Project</span><span class="brand-chip">Clayver</span><span class="brand-chip">Kärcher</span><span class="brand-chip">MOOG</span><span class="brand-chip">Bruni Glass</span><span class="brand-chip">Colombardo</span><span class="brand-chip">REDA</span><span class="brand-chip">Vitidee Rauscedo</span><span class="brand-chip">S.P.S.</span><span class="brand-chip">Tecme International</span>
     </div>
@@ -845,7 +1187,7 @@ body.lightbox-lock{overflow:hidden}
     </div>
     <div class="proj-grid">
       <article class="proj reveal">
-        <a class="proj-img project-one" href="assets/project-1-full.jpg" data-lightbox="project" data-caption="Винодельня №1: схема расстановки оборудования линии розлива игристых вин в алюминиевую банку"><img src="assets/project-1-preview.webp" alt="Схема расстановки линии розлива в банку" loading="lazy"></a>
+        <a class="proj-img project-one" href="assets/project-1-full.jpg" data-lightbox="project" data-caption="Винодельня №1: схема расстановки оборудования линии розлива игристых вин в алюминиевую банку"><img src="assets/project-1-preview.webp" alt="Схема расстановки линии розлива в банку" width="1200" height="642" loading="lazy"></a>
         <div class="proj-body">
           <span class="proj-spec">8000 банок/час</span>
           <h3>Винодельня №1</h3>
@@ -853,7 +1195,7 @@ body.lightbox-lock{overflow:hidden}
         </div>
       </article>
       <article class="proj reveal d1">
-        <a class="proj-img" href="assets/project-2.jpg" data-lightbox="project" data-caption="Винодельня №2, цех 1: схема расстановки линии розлива игристых вин в стеклянную бутылку"><img src="assets/project-2-preview.webp" alt="Схема расстановки линии розлива в бутылку" loading="lazy"></a>
+        <a class="proj-img" href="assets/project-2.jpg" data-lightbox="project" data-caption="Винодельня №2, цех 1: схема расстановки линии розлива игристых вин в стеклянную бутылку"><img src="assets/project-2-preview.webp" alt="Схема расстановки линии розлива в бутылку" width="1200" height="642" loading="lazy"></a>
         <div class="proj-body">
           <span class="proj-spec">2 × 3000 бут/час</span>
           <h3>Винодельня №2 · цех 1</h3>
@@ -861,7 +1203,7 @@ body.lightbox-lock{overflow:hidden}
         </div>
       </article>
       <article class="proj reveal d2">
-        <a class="proj-img" href="assets/project-3.jpg" data-lightbox="project" data-caption="Винодельня №2, цех 2 и 3: схема частичной расстановки оборудования линии розлива"><img src="assets/project-3-preview.webp" alt="Схема частичной расстановки линии розлива" loading="lazy"></a>
+        <a class="proj-img" href="assets/project-3.jpg" data-lightbox="project" data-caption="Винодельня №2, цех 2 и 3: схема частичной расстановки оборудования линии розлива"><img src="assets/project-3-preview.webp" alt="Схема частичной расстановки линии розлива" width="1200" height="642" loading="lazy"></a>
         <div class="proj-body">
           <span class="proj-spec">6000 бут/час</span>
           <h3>Винодельня №2 · цех 2 и 3</h3>
@@ -879,6 +1221,17 @@ body.lightbox-lock{overflow:hidden}
       <span class="eyebrow">Контакты</span>
       <h2>Расскажите, что нужно привезти</h2>
       <p class="lead">Опишите задачу, а мы подберём оборудование, рассчитаем стоимость и сроки поставки под ключ. Ответим в течение рабочего дня.</p>
+      <div class="calc-guide">
+        <h3>Что поможет быстрее рассчитать поставку</h3>
+        <ul>
+          <li>тип оборудования или участка</li>
+          <li>бренд, модель или артикул</li>
+          <li>фото шильдика или детали</li>
+          <li>нужная производительность</li>
+          <li>город поставки и сроки</li>
+          <li>требования к документам</li>
+        </ul>
+      </div>
       <div class="contacts-list">
         <div class="contact-person">
           <div class="role">Генеральный директор</div>
@@ -903,19 +1256,22 @@ body.lightbox-lock{overflow:hidden}
       <p class="fhint">Заполните форму, свяжемся и предложим решение.</p>
       <form data-lead-form action="send.php" method="post">
         <input class="hp-field" type="text" name="company" autocomplete="off" tabindex="-1" aria-hidden="true">
+        <input class="hp-field" type="text" name="website" autocomplete="off" tabindex="-1" aria-hidden="true">
         <input type="hidden" name="source" value="leader-vino-site">
-        <div class="field"><label>Ваше имя</label><input name="name" type="text" placeholder="Как к вам обращаться" required></div>
+        <input type="hidden" name="form_elapsed" value="" data-form-elapsed>
+        <input type="hidden" name="form_token" value="" data-form-token>
+        <div class="field"><label for="lead-name">Ваше имя</label><input id="lead-name" name="name" type="text" placeholder="Как к вам обращаться" autocomplete="name" required></div>
         <div class="field phone-control" data-phone-control>
-          <label>Телефон</label>
+          <label for="lead-phone">Телефон</label>
           <div class="phone-input-wrap">
-            <button class="phone-prefix" type="button" data-phone-toggle aria-expanded="false" aria-label="Выбрать код страны">
+            <button class="phone-prefix" type="button" data-phone-toggle aria-expanded="false" aria-controls="phone-country-menu" aria-label="Выбрать код страны">
               <span class="flag flag-ru" data-phone-flag></span>
               <span data-phone-prefix>+7</span>
               <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m4 6 4 4 4-4"/></svg>
             </button>
-            <input name="phoneVisible" type="tel" inputmode="numeric" autocomplete="off" maxlength="18" placeholder="(911) 000-00-00" data-phone-local required>
+            <input id="lead-phone" name="phoneVisible" type="tel" inputmode="numeric" autocomplete="tel" maxlength="18" placeholder="(911) 000-00-00" data-phone-local required>
             <input name="phone" type="hidden" value="+7" data-phone-full>
-            <div class="phone-menu" data-phone-menu>
+            <div class="phone-menu" id="phone-country-menu" data-phone-menu>
               <button type="button" class="active" data-code="+7" data-format="ru" data-placeholder="(911) 000-00-00"><span class="phone-choice"><span class="flag flag-ru"></span><span>Россия</span></span><span>+7</span></button>
               <button type="button" data-code="+375" data-placeholder="29 000 00 00"><span class="phone-choice"><span class="flag flag-by"></span><span>Беларусь</span></span><span>+375</span></button>
               <button type="button" data-code="+7" data-placeholder="701 000 0000"><span class="phone-choice"><span class="flag flag-kz"></span><span>Казахстан</span></span><span>+7</span></button>
@@ -936,8 +1292,8 @@ body.lightbox-lock{overflow:hidden}
             </div>
           </div>
         </div>
-        <div class="field"><label>E-mail</label><input name="email" type="email" placeholder="you@winery.ru"></div>
-        <div class="field"><label>Что нужно привезти</label><textarea name="message" placeholder="Опишите оборудование, бренд или задачу" required></textarea></div>
+        <div class="field"><label for="lead-email">E-mail</label><input id="lead-email" name="email" type="email" autocomplete="email" placeholder="you@winery.ru"></div>
+        <div class="field"><label for="lead-message">Что нужно привезти</label><textarea id="lead-message" name="message" placeholder="Опишите оборудование, бренд или задачу" required></textarea></div>
         <div class="consent"><input type="checkbox" id="agree" name="agree" value="yes" required><label for="agree">Я даю согласие на обработку персональных данных ООО «Лидер» (ИНН 7839029780) в целях обработки заявки и обратной связи. <a href="privacy.html" target="_blank" rel="noopener">Политика конфиденциальности</a></label></div>
         <button type="submit" class="btn">Отправить заявку</button>
         <div class="form-status" aria-live="polite"></div>
@@ -949,8 +1305,19 @@ body.lightbox-lock{overflow:hidden}
 <div class="lightbox" id="projectLightbox" aria-hidden="true">
   <div class="lightbox-inner" role="dialog" aria-modal="true" aria-label="Просмотр чертежа">
     <button class="lightbox-close" type="button" aria-label="Закрыть">×</button>
-    <img src="" alt="">
-    <div class="lightbox-caption"></div>
+    <button class="lightbox-nav lightbox-prev" type="button" aria-label="Предыдущий чертёж">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <button class="lightbox-nav lightbox-next" type="button" aria-label="Следующий чертёж">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+    </button>
+    <div class="lightbox-stage">
+      <img src="" alt="">
+    </div>
+    <div class="lightbox-caption-wrap">
+      <div class="lightbox-caption"></div>
+      <div class="lightbox-count"></div>
+    </div>
   </div>
 </div>
 
@@ -960,13 +1327,13 @@ body.lightbox-lock{overflow:hidden}
     <div class="foot-top">
       <div class="foot-brand">
         <div class="brand">
-          <span class="mark"><img src="assets/lion-white.png" alt="" /></span>
+          <span class="mark"><img src="assets/lion-white.png" alt="" width="186" height="234" loading="lazy" /></span>
           <span class="brand-text">
             <span class="name">Лидер</span>
             <span class="sub">импорт · виноделие</span>
           </span>
         </div>
-        <p>Доставка из-за рубежа любого винодельческого оборудования и запасных частей. Полный цикл ВЭД под ключ: от выкупа до пусконаладки.</p>
+        <p>Поставка винодельческого оборудования и запасных частей из-за рубежа. Полный цикл ВЭД под ключ: от закупки до пусконаладки.</p>
         <p class="foot-req">ООО «Лидер» · Санкт-Петербург</p>
       </div>
       <div class="foot-col">
@@ -976,6 +1343,7 @@ body.lightbox-lock{overflow:hidden}
         <a href="#process">Как работаем</a>
         <a href="#brands">Бренды</a>
         <a href="#contact">Контакты</a>
+        <a href="privacy.html" class="policy-link">Политика конфиденциальности</a>
       </div>
       <div class="foot-col">
         <h4>Контакты</h4>
@@ -995,11 +1363,73 @@ body.lightbox-lock{overflow:hidden}
 
 <script>
 const prefersReducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+let lenis=null;
+const canUseSmoothScroll=()=>!prefersReducedMotion&&window.innerWidth>680&&window.Lenis;
+const initSmoothScroll=()=>{
+  if(!canUseSmoothScroll()||lenis)return;
+  lenis=new Lenis({
+    duration:1.08,
+    easing:t=>Math.min(1,1.001-Math.pow(2,-10*t)),
+    smoothWheel:true,
+    wheelMultiplier:.82,
+    touchMultiplier:1.15
+  });
+  document.documentElement.classList.add('lenis');
+  lenis.on('scroll',({scroll})=>{
+    onScroll(scroll);
+    requestHeroParallax();
+    revealVisible();
+  });
+  const raf=time=>{
+    lenis?.raf(time);
+    requestAnimationFrame(raf);
+  };
+  requestAnimationFrame(raf);
+};
+const loadSmoothScroll=()=>{
+  if(prefersReducedMotion||window.innerWidth<=680||window.Lenis)return;
+  const script=document.createElement('script');
+  script.src='https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js';
+  script.async=true;
+  script.onload=initSmoothScroll;
+  document.head.appendChild(script);
+};
 
 // header scroll state
 const header=document.getElementById('header');
-const onScroll=()=>{header.classList.toggle('scrolled',window.scrollY>60)};
+const onScroll=(value)=>{
+  const y=typeof value==='number'?value:window.scrollY;
+  header.classList.toggle('scrolled',y>60);
+};
 onScroll();window.addEventListener('scroll',onScroll,{passive:true});
+
+// subtle hero background parallax on larger screens
+const heroSection=document.querySelector('.hero');
+const heroImage=document.querySelector('.hero-bg img');
+let heroParallaxFrame=0;
+const updateHeroParallax=()=>{
+  if(!heroSection||!heroImage)return;
+  if(prefersReducedMotion||window.innerWidth<=680){
+    heroImage.style.setProperty('--hero-parallax-y','0px');
+    return;
+  }
+  const rect=heroSection.getBoundingClientRect();
+  if(rect.bottom<0||rect.top>window.innerHeight){
+    return;
+  }
+  const progress=Math.min(Math.max(-rect.top/window.innerHeight,0),1);
+  heroImage.style.setProperty('--hero-parallax-y',`${Math.round(progress*34)}px`);
+};
+const requestHeroParallax=()=>{
+  if(heroParallaxFrame)return;
+  heroParallaxFrame=requestAnimationFrame(()=>{
+    heroParallaxFrame=0;
+    updateHeroParallax();
+  });
+};
+updateHeroParallax();
+window.addEventListener('scroll',requestHeroParallax,{passive:true});
+window.addEventListener('resize',requestHeroParallax);
 
 // mobile menu
 const burger=document.getElementById('burger');
@@ -1014,8 +1444,13 @@ const setMenuOpen=(open)=>{
   // Apply the transition class before changing transform.
   void navLinks.offsetWidth;
   burger.classList.toggle('open',open);
+  burger.setAttribute('aria-expanded',open?'true':'false');
   navLinks.classList.toggle('open',open);
   document.body.classList.toggle('nav-open',open);
+  if(lenis){
+    if(open)lenis.stop();
+    else lenis.start();
+  }
   requestAnimationFrame(onScroll);
 };
 const stopBackgroundScroll=(event)=>{
@@ -1024,6 +1459,17 @@ const stopBackgroundScroll=(event)=>{
   event.preventDefault();
 };
 burger.addEventListener('click',()=>setMenuOpen(!navLinks.classList.contains('open')));
+document.addEventListener('click',(event)=>{
+  if(!document.body.classList.contains('nav-open'))return;
+  if(navLinks.contains(event.target)||burger.contains(event.target))return;
+  setMenuOpen(false);
+});
+document.addEventListener('keydown',(event)=>{
+  if(event.key==='Escape'&&document.body.classList.contains('nav-open')){
+    setMenuOpen(false);
+    burger.focus();
+  }
+});
 window.addEventListener('resize',()=>{if(window.innerWidth>1080)setMenuOpen(false);syncAnchorOffset()});
 document.addEventListener('touchmove',stopBackgroundScroll,{passive:false});
 document.addEventListener('wheel',stopBackgroundScroll,{passive:false});
@@ -1062,8 +1508,11 @@ const prepareMotionElements=()=>{
   const staggerGroups=[
     ['.svc-grid .svc',.045,.28],
     ['.cat-grid .cat',.035,.28],
+    ['.info-grid .info-card',.055,.24],
     ['.steps .step',.055,.32],
+    ['.brand-feature-grid .brand-feature',.07,.24],
     ['.proj-grid .proj',.08,.24],
+    ['.supply-grid .supply-panel',.08,.16],
     ['.adv-list .adv-item',.07,.28],
     ['.contacts-list .contact-person',.07,.2],
     ['.foot-top > *',.08,.22],
@@ -1119,15 +1568,16 @@ const revealVisible=()=>{
 };
 const scrollToHash=(hash,behavior='smooth')=>{
   if(!hash||hash==='#'){
-    window.scrollTo({top:0,behavior});
+    if(lenis&&behavior!=='auto')lenis.scrollTo(0);
+    else window.scrollTo({top:0,behavior});
     return;
   }
   const target=getAnchorTarget(hash);
   if(!target)return;
   const nudge=getAnchorNudge(hash);
-  const getTop=()=>Math.max(0,target.getBoundingClientRect().top+window.pageYOffset-getAnchorOffset()+nudge);
-  const top=getTop();
-  window.scrollTo({top,behavior});
+  const top=Math.max(0,target.getBoundingClientRect().top+window.pageYOffset-getAnchorOffset()+nudge);
+  if(lenis&&behavior!=='auto')lenis.scrollTo(top);
+  else window.scrollTo({top,behavior});
   const afterScroll=()=>{
     revealNow(target);
     onScroll();
@@ -1157,16 +1607,19 @@ if(window.location.hash){
     if(target)revealNow(target);
     requestAnimationFrame(onScroll);
   };
-  requestAnimationFrame(applyInitialHash);
-  setTimeout(applyInitialHash,180);
+  const settleInitialHash=()=>{
+    applyInitialHash();
+    [120,360,760].forEach(delay=>setTimeout(applyInitialHash,delay));
+    if(document.fonts?.ready){
+      document.fonts.ready.then(applyInitialHash).catch(()=>{});
+    }
+  };
   window.addEventListener('load',()=>{
-    requestAnimationFrame(()=>scrollToHash(window.location.hash,'auto'));
-    setTimeout(applyInitialHash,180);
-    setTimeout(()=>{
-      const target=getAnchorTarget(window.location.hash);
-      if(target)revealNow(target);
-    },220);
-  });
+    requestAnimationFrame(settleInitialHash);
+  },{once:true});
+  if(document.readyState==='complete'){
+    requestAnimationFrame(settleInitialHash);
+  }
 }
 window.addEventListener('hashchange',()=>{
   if(window.location.hash)scrollToHash(window.location.hash,'auto');
@@ -1224,33 +1677,59 @@ if(prefersReducedMotion||!('IntersectionObserver' in window)){
   window.addEventListener('load',()=>setTimeout(revealVisible,450));
   window.addEventListener('scroll',revealVisible,{passive:true});
 }
+loadSmoothScroll();
+initSmoothScroll();
 
 // project drawings lightbox
 const lightbox=document.getElementById('projectLightbox');
 const lightboxImg=lightbox.querySelector('img');
 const lightboxCaption=lightbox.querySelector('.lightbox-caption');
+const lightboxCount=lightbox.querySelector('.lightbox-count');
+const projectLinks=[...document.querySelectorAll('[data-lightbox="project"]')];
+let activeProjectIndex=0;
+const showProject=(index)=>{
+  if(!projectLinks.length)return;
+  activeProjectIndex=(index+projectLinks.length)%projectLinks.length;
+  const link=projectLinks[activeProjectIndex];
+  lightboxImg.src=link.getAttribute('href');
+  lightboxImg.alt=link.querySelector('img')?.alt || 'Чертёж проекта';
+  lightboxCaption.textContent=link.dataset.caption || '';
+  if(lightboxCount)lightboxCount.textContent=`${activeProjectIndex+1} / ${projectLinks.length}`;
+};
 const closeLightbox=()=>{
   lightbox.classList.remove('open');
   lightbox.setAttribute('aria-hidden','true');
   document.body.classList.remove('lightbox-lock');
   lightboxImg.src='';
 };
-document.querySelectorAll('[data-lightbox="project"]').forEach(link=>{
+const openProject=(index)=>{
+  showProject(index);
+  lightbox.classList.add('open');
+  lightbox.setAttribute('aria-hidden','false');
+  document.body.classList.add('lightbox-lock');
+};
+const shiftProject=(direction)=>{
+  if(!lightbox.classList.contains('open'))return;
+  showProject(activeProjectIndex+direction);
+};
+projectLinks.forEach((link,index)=>{
   link.addEventListener('click',(event)=>{
     event.preventDefault();
-    lightboxImg.src=link.getAttribute('href');
-    lightboxImg.alt=link.querySelector('img')?.alt || 'Чертёж проекта';
-    lightboxCaption.textContent=link.dataset.caption || '';
-    lightbox.classList.add('open');
-    lightbox.setAttribute('aria-hidden','false');
-    document.body.classList.add('lightbox-lock');
+    openProject(index);
   });
 });
 lightbox.querySelector('.lightbox-close').addEventListener('click',closeLightbox);
+lightbox.querySelector('.lightbox-prev').addEventListener('click',()=>shiftProject(-1));
+lightbox.querySelector('.lightbox-next').addEventListener('click',()=>shiftProject(1));
 lightbox.addEventListener('click',(event)=>{if(event.target===lightbox)closeLightbox()});
-document.addEventListener('keydown',(event)=>{if(event.key==='Escape'&&lightbox.classList.contains('open'))closeLightbox()});
+document.addEventListener('keydown',(event)=>{
+  if(!lightbox.classList.contains('open'))return;
+  if(event.key==='Escape')closeLightbox();
+  if(event.key==='ArrowLeft')shiftProject(-1);
+  if(event.key==='ArrowRight')shiftProject(1);
+});
 
-// phone mask and demo lead form validation
+// phone mask and lead form validation
 const phoneDigits=(value)=>String(value||'').replace(/\D/g,'').slice(0,15);
 const formatRuLocalPhone=(value)=>{
   let d=phoneDigits(value);
@@ -1278,6 +1757,7 @@ const composePhone=(code,value)=>{
   return digits?code+' '+digits:code;
 };
 document.querySelectorAll('[data-lead-form]').forEach(form=>{
+  let formStartedAt=performance.now();
   const phoneControl=form.querySelector('[data-phone-control]');
   const phoneWrap=phoneControl?.querySelector('.phone-input-wrap');
   const phoneField=phoneControl?.querySelector('[data-phone-local]');
@@ -1288,8 +1768,18 @@ document.querySelectorAll('[data-lead-form]').forEach(form=>{
   const phoneMenu=phoneControl?.querySelector('[data-phone-menu]');
   const phoneOptions=phoneMenu?[...phoneMenu.querySelectorAll('button[data-code]')]:[];
   const status=form.querySelector('.form-status');
+  const formElapsed=form.querySelector('[data-form-elapsed]');
+  const formToken=form.querySelector('[data-form-token]');
   let phoneCode='+7';
   let phoneFormat='ru';
+  const refreshFormGuard=()=>{
+    formStartedAt=performance.now();
+    if(formElapsed)formElapsed.value='';
+    if(formToken){
+      formToken.value='lv-'+Math.round(formStartedAt).toString(36)+'-'+Math.random().toString(36).slice(2,10);
+    }
+  };
+  refreshFormGuard();
   const closePhoneMenu=()=>{
     if(!phoneMenu)return;
     phoneMenu.classList.remove('open');
@@ -1342,8 +1832,14 @@ document.querySelectorAll('[data-lead-form]').forEach(form=>{
   document.addEventListener('click',(event)=>{
     if(phoneControl&&!phoneControl.contains(event.target))closePhoneMenu();
   });
+  form.addEventListener('input',(event)=>{
+    const target=event.target;
+    if(target instanceof HTMLInputElement&&target.type==='hidden')return;
+    if(status){status.className='form-status';status.textContent=''}
+  });
   form.addEventListener('submit',async (event)=>{
     event.preventDefault();
+    if(formElapsed)formElapsed.value=String(Math.round((performance.now()-formStartedAt)/1000));
     if(phoneField){
       updatePhone();
       const digits=phoneDigits(phoneField.value);
@@ -1378,6 +1874,7 @@ document.querySelectorAll('[data-lead-form]').forEach(form=>{
       const result=await response.json().catch(()=>({ok:false,message:'Сервер вернул некорректный ответ.'}));
       if(!response.ok||!result.ok)throw new Error(result.message||'Не удалось отправить заявку.');
       form.reset();
+      refreshFormGuard();
       if(phoneOptions[0])selectPhoneCode(phoneOptions[0],false);
       if(status){status.className='form-status success';status.textContent='Спасибо! Заявка отправлена, мы скоро свяжемся с вами.'}
     }catch(error){

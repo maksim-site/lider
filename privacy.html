@@ -7,20 +7,27 @@
 <title>Политика в отношении обработки персональных данных — ООО «Лидер»</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400..700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--cream:#F4EFE6;--paper:#FBF8F2;--ink:#1C1815;--ink-soft:#5F574C;--wine:#6B1F2A;--line:rgba(28,24,21,.14)}
+:root{--cream:#F4EFE6;--paper:#FBF8F2;--ink:#1C1815;--ink-soft:#5F574C;--ink-faint:#8A8175;--wine:#6B1F2A;--gold:#B0894F;--line:rgba(28,24,21,.14);--serif:"Lora",Georgia,serif;--sans:"Manrope",system-ui,-apple-system,sans-serif}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:"Inter",system-ui,sans-serif;background:var(--cream);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
+body{font-family:var(--sans);background:var(--cream);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
 a{color:var(--wine)}
 .wrap{max-width:840px;margin:0 auto;padding:0 22px}
 .top{border-bottom:1px solid var(--line);padding:20px 0;position:sticky;top:0;background:rgba(244,239,230,.94);backdrop-filter:blur(8px);z-index:5}
-.top a{font-size:14px;font-weight:600;color:var(--ink-soft);text-decoration:none;display:inline-flex;align-items:center;gap:8px}
-.top a:hover{color:var(--wine)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:11px;color:var(--ink);text-decoration:none}
+.brand .mark{width:40px;height:40px;display:grid;place-items:center;padding:3px 5px 3px 3px;flex:none}
+.brand .mark img{height:34px;width:auto}
+.brand-text{line-height:1}
+.brand-text .name{display:block;font-family:var(--serif);font-size:22px;font-weight:600}
+.brand-text .sub{display:block;margin-top:4px;font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-faint);font-weight:800}
+.back{font-size:14px;font-weight:700;color:var(--ink-soft);text-decoration:none;display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
+.back:hover{color:var(--wine)}
 main{padding:46px 0 80px}
-h1{font-family:"Playfair Display",Georgia,serif;font-weight:700;font-size:clamp(26px,4.5vw,38px);line-height:1.15;letter-spacing:-.01em}
+h1{font-family:var(--serif);font-weight:600;font-size:clamp(26px,4.5vw,38px);line-height:1.18;letter-spacing:-.005em}
 .meta{margin-top:12px;font-size:14px;color:var(--ink-soft)}
-h2{font-family:"Playfair Display",Georgia,serif;font-weight:600;font-size:20px;margin:34px 0 10px}
+h2{font-family:var(--serif);font-weight:600;font-size:20px;margin:34px 0 10px}
 p{margin-bottom:11px;color:var(--ink-soft);font-size:15px}
 ul,ol{margin:0 0 11px 22px;color:var(--ink-soft);font-size:15px}
 li{margin-bottom:6px}
@@ -29,15 +36,26 @@ li{margin-bottom:6px}
 .req b{color:var(--ink)}
 .req p{font-size:14.5px;margin-bottom:5px}
 footer{border-top:1px solid var(--line);padding:24px 0;font-size:13px;color:var(--ink-soft)}
-@media(max-width:560px){h2{font-size:18px}}
+@media(max-width:560px){.top .wrap{align-items:flex-start}.brand-text .name{font-size:20px}.back{font-size:13px}h2{font-size:18px}}
 </style>
 </head>
 <body>
-<div class="top"><div class="wrap"><a href="index.html">← На главную · ЛИДЕР</a></div></div>
+<div class="top">
+  <div class="wrap">
+    <a href="index.html" class="brand" aria-label="Компания Лидер">
+      <span class="mark"><img src="assets/lion-black.png" alt="" width="186" height="234" /></span>
+      <span class="brand-text">
+        <span class="name">Лидер</span>
+        <span class="sub">импорт · виноделие</span>
+      </span>
+    </a>
+    <a class="back" href="index.html">← На главную</a>
+  </div>
+</div>
 <main>
   <div class="wrap">
     <h1>Политика в отношении обработки персональных данных</h1>
-    <p class="meta">ООО «Лидер» · редакция от 30 июня 2026 г.</p>
+    <p class="meta">ООО «Лидер» · редакция от 6 июля 2026 г.</p>
     <p class="lead">Настоящая Политика обработки персональных данных (далее — Политика) составлена в соответствии с Федеральным законом от 27.07.2006 № 152-ФЗ «О персональных данных» (далее — ФЗ-152) и определяет порядок обработки персональных данных и меры по обеспечению безопасности персональных данных, предпринимаемые ООО «Лидер» (далее — Оператор).</p>
 
     <h2>1. Общие положения</h2>
@@ -137,7 +155,7 @@ footer{border-top:1px solid var(--line);padding:24px 0;font-size:13px;color:var(
     <p>Оператор осуществляет сбор, запись, систематизацию, накопление, хранение, уточнение, извлечение, использование, передачу, обезличивание, блокирование, удаление и уничтожение персональных данных. Обработка осуществляется как с использованием средств автоматизации, так и без таковых.</p>
 
     <h2>10. Файлы cookie и веб-аналитика</h2>
-    <p>Сайт использует файлы cookie и сервисы веб-аналитики (например, Яндекс Метрика) для сбора обезличенных статистических данных о посещениях, что помогает улучшать работу сайта. Пользователь может ограничить или отключить использование cookie в настройках своего браузера; это может ограничить часть функций сайта.</p>
+    <p>Сайт может использовать файлы cookie и сервисы веб-аналитики для сбора обезличенных статистических данных о посещениях, что помогает улучшать работу сайта. Пользователь может ограничить или отключить использование cookie в настройках своего браузера; это может ограничить часть функций сайта.</p>
 
     <h2>11. Трансграничная передача персональных данных</h2>
     <p>Оператор не осуществляет трансграничную передачу персональных данных. В случае необходимости такой передачи она будет осуществляться в соответствии с требованиями ФЗ-152, в том числе при условии обеспечения иностранным государством надлежащей защиты прав субъектов персональных данных.</p>
@@ -152,7 +170,7 @@ footer{border-top:1px solid var(--line);padding:24px 0;font-size:13px;color:var(
       <p><b>Оператор:</b> Общество с ограниченной ответственностью «Лидер» (ООО «Лидер»)</p>
       <p>ИНН 7839029780 · ОГРН 1157847103809</p>
       <p>198035, г. Санкт-Петербург, Межевой канал, д.5, лит. АХ, офис 406</p>
-      <p>Тел.: +7 (812) 309-82-46 · E-mail: <a href="mailto:avl@lit-log.ru">avl@lit-log.ru</a></p>
+      <p>Тел.: +7 (812) 309-82-46 · E-mail: <a href="mailto:a.lashchukhin@l-group.su">a.lashchukhin@l-group.su</a></p>
     </div>
   </div>
 </main>

@@ -1,0 +1,6 @@
+.DS_Store
+*.zip
+tmp/
+config.php
+leads*.log
+.lead-rate-limit.json
