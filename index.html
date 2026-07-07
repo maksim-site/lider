@@ -103,6 +103,7 @@ header:not(.scrolled) .nav-links a:not(.btn)::after{background:var(--gold-soft)}
 .nav-links a:not(.btn):hover::after{transform:scaleX(1)}
 .nav-links a:hover{color:var(--wine)}
 .nav-links a.btn-primary,.nav-links a.btn-primary:hover,.nav-mobile-cta,.nav-mobile-cta:hover,.nav-drawer-cta,.nav-drawer-cta:hover{color:#fff}
+.nav-actions{display:flex;align-items:center;gap:18px;margin-left:auto}
 .nav-mobile-cta{display:inline-flex;padding:11px 20px;z-index:130;position:relative;overflow:hidden}
 .nav-links .nav-drawer-cta{display:none}
 body.nav-open{overflow:hidden;touch-action:none}
@@ -544,6 +545,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.66);padding:70px 0 36px}
 .route-svg-label text{font-family:var(--sans);text-anchor:middle}
 .route-svg-label .kicker{font-size:10px;letter-spacing:2px;text-transform:uppercase;fill:var(--gold);font-weight:800}
 .route-svg-label .main{font-size:15px;fill:var(--ink);font-weight:800}
+.route-node-number{display:none;font-family:var(--sans);font-size:36px;font-weight:800;text-anchor:middle;fill:var(--gold);paint-order:stroke;stroke:rgba(244,239,230,.9);stroke-width:5px;letter-spacing:.04em}
 .route-stops{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;position:relative;z-index:1}
 .route-stop{
   background:rgba(255,255,255,.48);border:1px solid var(--line-soft);border-radius:3px;
@@ -680,7 +682,8 @@ body.lightbox-lock{overflow:hidden}
   .nav-links .nav-drawer-cta{
     display:inline-flex;font-family:var(--sans);font-size:15px;margin-top:8px;padding:13px 22px;color:#fff !important;
   }
-  .nav-mobile-cta{display:inline-flex;margin-left:auto;padding:11px 16px;font-size:13px;z-index:130}
+  .nav-actions{margin-left:auto;gap:10px}
+  .nav-mobile-cta{display:inline-flex;padding:11px 16px;font-size:13px;z-index:130}
   .burger{display:flex;margin-left:6px;z-index:150}
   .burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);background:#fff}
   .burger.open span:nth-child(2){opacity:0}
@@ -727,7 +730,8 @@ body.lightbox-lock{overflow:hidden}
   .brand .mark img{height:34px}
   .brand-text .name{font-size:22px}
   .brand-text .sub{font-size:8px;letter-spacing:.18em}
-  .nav-mobile-cta{margin-left:auto;padding:9px 12px;font-size:12px}
+  .nav-actions{margin-left:auto;gap:9px}
+  .nav-mobile-cta{padding:9px 12px;font-size:12px}
   .section{padding:80px 0}
   .nav-links{
     position:fixed;top:0;right:0;bottom:auto;left:auto;width:78%;max-width:340px;
@@ -782,6 +786,11 @@ body.lightbox-lock{overflow:hidden}
   .cat,.svc,.case,.info-card,.supply-panel{padding:24px 22px}
   .route-map{margin:-16px 0 26px;padding:20px 18px}
   .route-svg{margin-bottom:14px}
+  .route-base{stroke-width:5}
+  .route-flow{stroke-width:4;stroke-dasharray:16 15}
+  .route-pulse{opacity:.18}
+  .route-node{stroke-width:3}
+  .route-node-number{display:block}
   .route-stops{grid-template-columns:1fr 1fr;gap:9px}
   .route-svg-label,.route-callout{display:none}
   .route-stop{padding:12px 11px}
@@ -804,8 +813,26 @@ body.lightbox-lock{overflow:hidden}
   }
   .foot-bottom{padding-top:20px;gap:8px}
 }
-@media(max-width:680px){
+@media(max-width:430px){
+  .nav-actions{gap:8px}
+  .nav-mobile-cta{
+    display:inline-flex;
+    padding:8px 11px;
+    min-height:38px;
+    font-size:0;
+  }
+  .nav-mobile-cta::after{
+    content:"Заявка";
+    position:relative;
+    z-index:1;
+    font-size:12px;
+    line-height:1;
+  }
+  .burger{margin-left:0}
+}
+@media(max-width:360px){
   .nav-mobile-cta{display:none}
+  .nav-actions{gap:0}
 }
 </style>
 <noscript><style>.reveal{opacity:1 !important;transform:none !important;filter:none !important}</style></noscript>
@@ -831,9 +858,11 @@ body.lightbox-lock{overflow:hidden}
       <a href="#contact">Контакты</a>
       <a href="#lead-form" class="btn btn-primary nav-drawer-cta">Получить расчёт</a>
     </nav>
-    <a href="#lead-form" class="btn btn-primary nav-mobile-cta">Получить расчёт</a>
-    <a href="tel:+79119023763" class="nav-phone">+7 (911) 902-37-63</a>
-    <button class="burger" id="burger" aria-label="Меню" aria-controls="navLinks" aria-expanded="false"><span></span><span></span><span></span></button>
+    <div class="nav-actions">
+      <a href="#lead-form" class="btn btn-primary nav-mobile-cta">Получить расчёт</a>
+      <a href="tel:+79119023763" class="nav-phone">+7 (911) 902-37-63</a>
+      <button class="burger" id="burger" aria-label="Меню" aria-controls="navLinks" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
   </div>
 </header>
 
@@ -1056,12 +1085,16 @@ body.lightbox-lock{overflow:hidden}
           <text class="main" y="15">цех</text>
         </g>
         <circle class="route-pulse" cx="72" cy="116" r="30" />
+        <text class="route-node-number" x="72" y="82">01</text>
         <circle class="route-node" cx="72" cy="116" r="13" />
         <circle class="route-pulse" cx="404" cy="112" r="30" style="animation-delay:.35s" />
+        <text class="route-node-number" x="404" y="78">02</text>
         <circle class="route-node" cx="404" cy="112" r="13" />
         <circle class="route-pulse" cx="748" cy="92" r="30" style="animation-delay:.7s" />
+        <text class="route-node-number" x="748" y="58">03</text>
         <circle class="route-node" cx="748" cy="92" r="13" />
         <circle class="route-pulse" cx="916" cy="92" r="30" style="animation-delay:1.05s" />
+        <text class="route-node-number" x="916" y="58">04</text>
         <circle class="route-node" cx="916" cy="92" r="13" />
       </svg>
       <div class="route-stops">
