@@ -334,12 +334,6 @@ textarea:focus-visible{
 .cats{background:var(--paper)}
 .cats .wrap{position:relative}
 .cats .section-head,.cat-visuals,.cat-grid{position:relative;z-index:1}
-.grape-seed-blueprint{
-  position:absolute;right:20px;top:76px;z-index:0;width:min(370px,26vw);height:auto;
-  color:rgba(107,31,42,.26);opacity:.52;filter:blur(.28px);transform:rotate(-8deg);
-  pointer-events:none;mix-blend-mode:multiply;
-}
-.grape-seed-blueprint .soft{color:rgba(176,138,80,.2)}
 .cat-visuals{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:0 0 36px;align-items:stretch}
 .cat-visual-card{
   border-radius:4px;overflow:hidden;background:var(--cream-2);
@@ -891,7 +885,6 @@ body.lightbox-lock{overflow:hidden}
   .nav-phone{display:none}
 }
 @media(max-width:1080px){
-  .grape-seed-blueprint{display:none}
   .nav{justify-content:flex-start}
   .nav-links{
     position:fixed;top:0;right:0;bottom:auto;left:auto;width:78%;max-width:340px;
@@ -1007,17 +1000,36 @@ body.lightbox-lock{overflow:hidden}
     background:url("data:image/svg+xml,%3Csvg width='18' height='28' viewBox='0 0 18 28' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M9 1V22M4 17L9 22L14 17' stroke='%23d4ac6e' stroke-width='1.3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat;
     opacity:.62;
   }
-  .hero-meta{position:static;margin-top:36px}
-  .hero-meta .wrap{flex-direction:column;gap:16px;align-items:flex-start;border-color:rgba(255,255,255,.18)}
-  .hero{min-height:auto;display:block}
-  .hero-inner{padding-top:120px;padding-bottom:0;max-width:none}
-  .hero h1{font-size:clamp(34px,10vw,42px);max-width:100%;overflow-wrap:normal}
-  .hero .lead{max-width:100%;font-size:15.5px;line-height:1.55;overflow-wrap:break-word}
+  .hero{
+    min-height:100svh;display:flex;flex-direction:column;
+  }
+  .hero-bg img{object-position:64% center}
+  .hero-bg::after{
+    background:
+      linear-gradient(90deg,rgba(20,14,12,.86) 0%,rgba(20,14,12,.66) 48%,rgba(20,14,12,.34) 100%),
+      linear-gradient(180deg,rgba(20,14,12,.2) 0%,rgba(20,14,12,.48) 100%);
+  }
+  .hero-inner{
+    flex:1;display:flex;flex-direction:column;justify-content:flex-start;
+    padding-top:118px;padding-bottom:0;max-width:none;
+  }
+  .hero .eyebrow{max-width:92%}
+  .hero h1{font-size:clamp(34px,10vw,42px);max-width:88%;overflow-wrap:normal}
+  .hero .lead{max-width:92%;font-size:15.5px;line-height:1.55;overflow-wrap:break-word}
+  .hero-meta{position:static;margin-top:14px;padding-bottom:28px}
+  .hero-meta .wrap{
+    width:calc(100% - 40px);margin-left:20px;margin-right:auto;
+    flex-direction:column;gap:12px;align-items:flex-start;border-color:rgba(255,255,255,.18);
+    padding-top:20px;
+  }
   .manifesto blockquote{max-width:100%;overflow-wrap:break-word}
   .form{padding:26px 22px}
   .section{padding:64px 0}
-  .hero-actions{flex-direction:row;align-items:stretch;gap:10px;flex-wrap:nowrap}
-  .hero-actions .btn{flex:1 1 0;min-width:0;width:auto;justify-content:center;padding:13px 10px;font-size:13.5px}
+  .hero-actions{flex-direction:column;align-items:flex-start;gap:10px;flex-wrap:nowrap;margin-top:auto;padding-top:30px}
+  .hero-actions .btn{
+    flex:0 0 auto;min-width:168px;width:auto;max-width:max-content;
+    justify-content:flex-start;padding:12px 18px;font-size:13.5px;
+  }
   .hero-actions .btn-full{display:none}
   .hero-actions .btn-short{display:inline}
   .parts h2,.ownved h2,.section-head h2,.contact h2,.manifesto blockquote{font-size:clamp(23px,6.6vw,30px)}
@@ -1038,25 +1050,25 @@ body.lightbox-lock{overflow:hidden}
   .parts .ptext{margin-top:14px;font-size:14.8px;line-height:1.55;max-width:100%}
   .service-board{
     display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;
-    margin:0 -20px;padding:0 20px 12px;-webkit-overflow-scrolling:touch;
+    margin:0 -20px;padding:0 32px 14px;scroll-padding-left:32px;-webkit-overflow-scrolling:touch;
   }
   .service-board::-webkit-scrollbar{display:none}
   .service-list{display:contents}
   .service-primary{
-    flex:0 0 min(84vw,326px);min-height:314px;padding:24px 22px;scroll-snap-align:start;
+    flex:0 0 min(78vw,306px);min-height:0;padding:24px 22px 22px;scroll-snap-align:start;
   }
-  .service-primary h3{font-size:27px}
+  .service-primary h3{font-size:25px}
   .service-primary p{font-size:14.2px}
   .service-points{gap:9px;margin-top:18px}
   .service-points li{font-size:13.2px}
   .service-row{
-    flex:0 0 min(76vw,292px);min-height:226px;padding:22px 20px;scroll-snap-align:start;
+    flex:0 0 min(68vw,258px);min-height:0;padding:20px 18px 18px;scroll-snap-align:start;
     border:1px solid var(--line-soft);border-radius:4px;background:var(--paper);
     box-shadow:0 18px 38px -34px rgba(28,24,21,.42);
   }
   .service-row:nth-child(n){border:1px solid var(--line-soft)}
   .service-row h3{font-size:17px}
-  .service-row p{font-size:13.4px}
+  .service-row p{font-size:13.2px;line-height:1.48}
   .cat-visual-card{min-height:0;box-shadow:0 14px 30px -28px rgba(28,24,21,.42)}
   .cat-visual-card picture,.cat-visual-card:first-child picture{height:auto;aspect-ratio:4/3}
   .cat-visual-card figcaption{font-size:11.2px;min-height:42px;padding:9px 4px;gap:5px;line-height:1.15}
@@ -1367,24 +1379,6 @@ body.lightbox-lock{overflow:hidden}
       <h2>Поставляем оборудование и комплектующие для ключевых участков винодельческого производства</h2>
       <p>От линий розлива до бочек, амфор и лабораторной химии. Если нужной позиции нет в списке, уточним возможность поставки под вашу задачу.</p>
     </div>
-    <svg class="grape-seed-blueprint" viewBox="0 0 420 420" aria-hidden="true">
-      <g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M218 36c58 34 104 108 102 180-2 78-50 143-105 168-54-27-101-92-100-170 1-73 45-145 103-178Z"/>
-        <path d="M218 76c39 28 70 80 69 137-1 60-31 108-72 132-41-24-70-72-70-132 0-57 31-109 73-137Z" opacity=".62"/>
-        <path d="M214 113c23 28 34 63 33 104-1 38-11 69-33 96-22-27-33-58-33-96 0-41 10-76 33-104Z" opacity=".45"/>
-        <path d="M214 73v274" opacity=".42"/>
-        <path d="M156 212h122" opacity=".28"/>
-        <path d="M178 136c24 16 48 16 72 0" opacity=".35"/>
-        <path d="M174 294c27-17 54-17 81 0" opacity=".35"/>
-      </g>
-      <g class="soft" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-        <path d="M82 110h74M279 110h60M76 318h95M262 318h84"/>
-        <path d="M104 110v56M326 110v56M118 318v-52M329 318v-52"/>
-        <path d="M62 216h48M318 216h48"/>
-        <circle cx="214" cy="214" r="172" stroke-dasharray="5 13" opacity=".55"/>
-        <path d="M108 70l-28 28M340 322l-28 28" opacity=".5"/>
-      </g>
-    </svg>
     <div class="cat-visuals reveal d1">
       <figure class="cat-visual-card">
         <picture><source srcset="assets/stock/optimized/wine-bottling-line.webp" type="image/webp"><img src="assets/stock/optimized/wine-bottling-line.webp" alt="Линия розлива вина с бутылками на конвейере" width="1200" height="800" loading="lazy"></picture>
@@ -1946,6 +1940,32 @@ const getAnchorTarget=(hash)=>{
   const id=decodeURIComponent(hash.slice(1));
   return document.getElementById(id);
 };
+let anchorScrollFrame=0;
+const anchorEase=t=>1-Math.pow(1-t,4);
+const animateWindowScroll=(top,duration=900)=>{
+  cancelAnimationFrame(anchorScrollFrame);
+  if(prefersReducedMotion){
+    window.scrollTo(0,top);
+    return;
+  }
+  const start=window.pageYOffset;
+  const distance=top-start;
+  if(Math.abs(distance)<2){
+    window.scrollTo(0,top);
+    return;
+  }
+  const started=performance.now();
+  const tick=now=>{
+    const progress=Math.min(1,(now-started)/duration);
+    window.scrollTo(0,Math.round(start+distance*anchorEase(progress)));
+    if(progress<1){
+      anchorScrollFrame=requestAnimationFrame(tick);
+    }else{
+      anchorScrollFrame=0;
+    }
+  };
+  anchorScrollFrame=requestAnimationFrame(tick);
+};
 const prepareMotionElements=()=>{
   const staggerGroups=[
     ['.svc-grid .svc',.045,.28],
@@ -2010,16 +2030,18 @@ const revealVisible=()=>{
 };
 const scrollToHash=(hash,behavior='smooth')=>{
   if(!hash||hash==='#'){
-    if(lenis&&behavior!=='auto')lenis.scrollTo(0);
-    else window.scrollTo({top:0,behavior});
+    if(lenis&&behavior!=='auto')lenis.scrollTo(0,{duration:1.25,easing:anchorEase,lock:true});
+    else if(behavior==='auto')window.scrollTo({top:0,behavior});
+    else animateWindowScroll(0,window.innerWidth<=680?820:980);
     return;
   }
   const target=getAnchorTarget(hash);
   if(!target)return;
   const nudge=getAnchorNudge(hash);
   const top=Math.max(0,target.getBoundingClientRect().top+window.pageYOffset-getAnchorOffset()+nudge);
-  if(lenis&&behavior!=='auto')lenis.scrollTo(top);
-  else window.scrollTo({top,behavior});
+  if(lenis&&behavior!=='auto')lenis.scrollTo(top,{duration:1.25,easing:anchorEase,lock:true});
+  else if(behavior==='auto')window.scrollTo({top,behavior});
+  else animateWindowScroll(top,window.innerWidth<=680?820:980);
   const afterScroll=()=>{
     revealNow(target);
     onScroll();
