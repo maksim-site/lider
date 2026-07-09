@@ -229,6 +229,7 @@ textarea:focus-visible{
   border-top:1px solid rgba(255,255,255,.18);padding-top:26px;}
 .hero-meta .item{color:rgba(255,255,255,.85);font-size:14px;display:flex;align-items:center;gap:11px}
 .hero-meta .item b{color:#fff;font-weight:600}
+.hero-meta .meta-text{min-width:0}
 .hero-meta .dot{width:6px;height:6px;border-radius:50%;background:var(--gold-soft);flex:none}
 
 /* ---------- MANIFESTO ---------- */
@@ -1018,20 +1019,22 @@ body.lightbox-lock{overflow:hidden}
   .hero .lead{max-width:92%;font-size:15.5px;line-height:1.55;overflow-wrap:break-word}
   .hero-meta{position:static;margin-top:14px;padding-bottom:28px}
   .hero-meta .wrap{
-    width:calc(100% - 40px);margin-left:20px;margin-right:auto;
+    width:calc(100% - 56px);margin-left:28px;margin-right:auto;
     flex-direction:column;gap:12px;align-items:flex-start;border-color:rgba(255,255,255,.18);
     padding-top:20px;
   }
+  .hero-meta .item{align-items:flex-start;font-size:14.5px;line-height:1.35}
+  .hero-meta .dot{margin-top:.45em}
   .manifesto blockquote{max-width:100%;overflow-wrap:break-word}
   .form{padding:26px 22px}
   .section{padding:64px 0}
   .hero-actions{flex-direction:column;align-items:flex-start;gap:10px;flex-wrap:nowrap;margin-top:auto;padding-top:30px}
   .hero-actions .btn{
-    flex:0 0 auto;min-width:168px;width:auto;max-width:max-content;
-    justify-content:flex-start;padding:12px 18px;font-size:13.5px;
+    flex:0 0 auto;min-width:246px;width:auto;max-width:calc(100vw - 56px);
+    justify-content:flex-start;padding:13px 22px;font-size:13.5px;
   }
-  .hero-actions .btn-full{display:none}
-  .hero-actions .btn-short{display:inline}
+  .hero-actions .btn-full{display:inline}
+  .hero-actions .btn-short{display:none}
   .parts h2,.ownved h2,.section-head h2,.contact h2,.manifesto blockquote{font-size:clamp(23px,6.6vw,30px)}
   .ownved{padding:0;isolation:isolate}
   .ownved .wrap{
@@ -1050,19 +1053,19 @@ body.lightbox-lock{overflow:hidden}
   .parts .ptext{margin-top:14px;font-size:14.8px;line-height:1.55;max-width:100%}
   .service-board{
     display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;
-    margin:0 -20px;padding:0 32px 14px;scroll-padding-left:32px;-webkit-overflow-scrolling:touch;
+    align-items:flex-start;margin:0 -20px;padding:0 32px 14px;scroll-padding-left:32px;-webkit-overflow-scrolling:touch;
   }
   .service-board::-webkit-scrollbar{display:none}
   .service-list{display:contents}
   .service-primary{
-    flex:0 0 min(78vw,306px);min-height:0;padding:24px 22px 22px;scroll-snap-align:start;
+    flex:0 0 min(78vw,306px);min-height:0;padding:22px 22px 21px;scroll-snap-align:start;
   }
   .service-primary h3{font-size:25px}
   .service-primary p{font-size:14.2px}
   .service-points{gap:9px;margin-top:18px}
   .service-points li{font-size:13.2px}
   .service-row{
-    flex:0 0 min(68vw,258px);min-height:0;padding:20px 18px 18px;scroll-snap-align:start;
+    flex:0 0 min(66vw,252px);min-height:0;padding:18px 18px 17px;scroll-snap-align:start;
     border:1px solid var(--line-soft);border-radius:4px;background:var(--paper);
     box-shadow:0 18px 38px -34px rgba(28,24,21,.42);
   }
@@ -1244,9 +1247,9 @@ body.lightbox-lock{overflow:hidden}
   </div>
   <div class="hero-meta">
     <div class="wrap">
-      <span class="item"><span class="dot"></span><b>30+</b> брендов Европы</span>
-      <span class="item"><span class="dot"></span><b>Полный цикл</b> под ключ</span>
-      <span class="item"><span class="dot"></span>Работаем с учётом <b>ограничений ВЭД</b></span>
+      <span class="item"><span class="dot"></span><span class="meta-text"><b>30+</b> брендов Европы</span></span>
+      <span class="item"><span class="dot"></span><span class="meta-text"><b>Полный цикл</b> под ключ</span></span>
+      <span class="item"><span class="dot"></span><span class="meta-text">Работаем с учётом <b>ограничений ВЭД</b></span></span>
     </div>
   </div>
 </section>
