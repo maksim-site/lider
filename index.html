@@ -1021,9 +1021,9 @@ body.lightbox-lock{overflow:hidden}
   .hero-meta .wrap{
     width:calc(100% - 56px);margin-left:28px;margin-right:auto;
     flex-direction:column;gap:12px;align-items:flex-start;border-color:rgba(255,255,255,.18);
-    padding-top:20px;
+    padding:20px 0 0;
   }
-  .hero-meta .item{align-items:flex-start;font-size:14.5px;line-height:1.35}
+  .hero-meta .item{width:100%;justify-content:flex-start;align-items:flex-start;font-size:14.5px;line-height:1.35}
   .hero-meta .dot{margin-top:.45em}
   .manifesto blockquote{max-width:100%;overflow-wrap:break-word}
   .form{padding:26px 22px}
@@ -1052,26 +1052,30 @@ body.lightbox-lock{overflow:hidden}
   .parts h2{max-width:100%;margin-top:14px}
   .parts .ptext{margin-top:14px;font-size:14.8px;line-height:1.55;max-width:100%}
   .service-board{
-    display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;
-    align-items:flex-start;margin:0 -20px;padding:0 32px 14px;scroll-padding-left:32px;-webkit-overflow-scrolling:touch;
+    display:grid;grid-template-columns:1fr;gap:12px;overflow:visible;
+    align-items:stretch;margin:0;padding:0;
   }
   .service-board::-webkit-scrollbar{display:none}
-  .service-list{display:contents}
+  .service-list{
+    display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;
+    border:0;background:transparent;overflow:visible;
+  }
   .service-primary{
-    flex:0 0 min(78vw,306px);min-height:0;padding:22px 22px 21px;scroll-snap-align:start;
+    min-height:0;padding:22px 22px 21px;
   }
   .service-primary h3{font-size:25px}
   .service-primary p{font-size:14.2px}
   .service-points{gap:9px;margin-top:18px}
   .service-points li{font-size:13.2px}
   .service-row{
-    flex:0 0 min(66vw,252px);min-height:0;padding:18px 18px 17px;scroll-snap-align:start;
+    min-height:0;padding:15px 13px 14px;
     border:1px solid var(--line-soft);border-radius:4px;background:var(--paper);
     box-shadow:0 18px 38px -34px rgba(28,24,21,.42);
   }
   .service-row:nth-child(n){border:1px solid var(--line-soft)}
-  .service-row h3{font-size:17px}
-  .service-row p{font-size:13.2px;line-height:1.48}
+  .service-row .service-label{font-size:9.2px;letter-spacing:.13em;margin-bottom:8px}
+  .service-row h3{font-size:15.2px;line-height:1.18;margin-bottom:7px}
+  .service-row p{font-size:12.2px;line-height:1.42}
   .cat-visual-card{min-height:0;box-shadow:0 14px 30px -28px rgba(28,24,21,.42)}
   .cat-visual-card picture,.cat-visual-card:first-child picture{height:auto;aspect-ratio:4/3}
   .cat-visual-card figcaption{font-size:11.2px;min-height:42px;padding:9px 4px;gap:5px;line-height:1.15}
