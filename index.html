@@ -66,6 +66,63 @@ section[id],#lead-form{scroll-margin-top:var(--anchor-offset)}
 .section-head{max-width:720px;margin-bottom:64px}
 .section-head h2{font-size:clamp(30px,4.4vw,52px);margin:18px 0 0}
 .section-head p{margin-top:20px;font-size:18px;color:var(--ink-soft);max-width:620px}
+.manifesto,.fit,.cats,.supply-info,.adv,.brands,.cases{
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+}
+.manifesto .wrap,.fit .wrap,.cats .wrap,.supply-info .wrap,.adv .wrap,.brands .wrap,.cases .wrap{
+  position:relative;
+  z-index:1;
+}
+.manifesto::before,.fit::before,.cats::before,.supply-info::before,.adv::before,.brands::before,.cases::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  opacity:1;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.72' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.2'/%3E%3C/svg%3E"),
+    radial-gradient(ellipse at 92% 22%,rgba(107,31,42,.085),rgba(107,31,42,0) 36%),
+    radial-gradient(ellipse at 84% 78%,rgba(176,138,80,.07),rgba(176,138,80,0) 34%),
+    linear-gradient(180deg,rgba(255,255,255,.24),rgba(239,232,219,.32));
+  background-size:180px 180px,100% 100%,100% 100%,100% 100%;
+  background-blend-mode:multiply,normal,normal,normal;
+}
+@media (min-width:1081px){
+  .fit::after,.cats::after,.supply-info::after,.brands::after,.cases::after{
+    content:"";
+    position:absolute;
+    z-index:0;
+    pointer-events:none;
+  }
+  .fit::after{
+    top:0;right:-10vw;bottom:0;width:min(760px,52vw);
+    background:
+      linear-gradient(90deg,rgba(244,239,230,.94) 0%,rgba(244,239,230,.68) 32%,rgba(244,239,230,.18) 100%),
+      url("assets/stock/optimized/winery-cellar-tanks.webp") center/cover no-repeat;
+    opacity:.43;
+    clip-path:polygon(24% 0,100% 0,100% 100%,4% 100%);
+    border-left:1px solid rgba(107,31,42,.16);
+  }
+  .cats::after{
+    display:none;
+  }
+  .supply-info::after{
+    display:none;
+  }
+  .brands::after{
+    right:-7vw;top:72px;width:min(560px,38vw);height:300px;
+    background:linear-gradient(115deg,rgba(176,138,80,.12),rgba(107,31,42,.07) 58%,rgba(255,255,255,0));
+    clip-path:polygon(20% 0,100% 9%,92% 100%,0 86%);
+  }
+  .cases::after{
+    right:-10vw;top:0;bottom:0;width:min(640px,44vw);
+    background:linear-gradient(135deg,rgba(107,31,42,.12),rgba(176,138,80,.13) 48%,rgba(255,255,255,0));
+    clip-path:polygon(20% 0,100% 0,100% 82%,0 100%);
+  }
+}
 
 /* ---------- HEADER ---------- */
 header{
@@ -164,6 +221,7 @@ textarea:focus-visible{
 .hero .eyebrow{color:var(--gold-soft)}
 .hero .eyebrow::before{background:var(--gold-soft)}
 .hero-actions{display:flex;gap:16px;margin-top:40px;flex-wrap:wrap}
+.hero-actions .btn-short{display:none}
 .hero-meta{
   position:absolute;bottom:42px;left:0;right:0;z-index:1;
 }
@@ -220,27 +278,40 @@ textarea:focus-visible{
     var(--paper);
 }
 .svc:hover::before{transform:scaleY(1)}
-.svc .n{font-family:var(--serif);font-size:18px;color:var(--svc-accent,var(--gold));font-weight:600}
+.svc .n{
+  display:inline-grid;place-items:center;width:38px;height:38px;border-radius:50%;
+  background:var(--svc-accent,var(--wine));color:#fff;
+  font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:.08em;
+  box-shadow:0 16px 28px -20px var(--svc-accent,var(--wine));
+}
 .svc .n,.svc h3,.svc p{position:relative;z-index:1}
-.svc h3{font-size:21px;margin:14px 0 10px;font-family:var(--sans);font-weight:600;letter-spacing:0}
+.svc h3{font-size:21px;margin:18px 0 10px;font-family:var(--sans);font-weight:600;letter-spacing:0}
 .svc p{font-size:15px;color:var(--ink-soft)}
+@media (min-width:681px){
+  .svc::after{display:none}
+  .svc .n{
+    display:inline-flex;width:auto;height:auto;border-radius:0;background:transparent;color:var(--svc-accent,var(--wine));
+    align-items:center;padding:0;border:0;font-size:13px;font-weight:800;letter-spacing:.18em;box-shadow:none;
+  }
+  .svc .n::after{
+    content:"";display:block;width:28px;height:1px;background:var(--svc-accent,var(--wine));margin-left:12px;opacity:.75;
+  }
+  .svc h3{margin-top:26px}
+}
 
 /* ---------- FIT / CLIENT TYPES ---------- */
 .fit{background:var(--paper)}
 .info-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
 .info-card{
-  background:
-    linear-gradient(135deg,var(--info-tint,rgba(176,138,80,.08)),rgba(255,255,255,0) 56%),
-    var(--cream);
+  background:var(--cream);
   border:1px solid var(--line-soft);border-radius:4px;
-  padding:28px 24px;transition:.3s;min-height:100%;position:relative;overflow:hidden;
+  padding:30px 26px;transition:.3s;min-height:100%;position:relative;overflow:hidden;
 }
 .info-card::before{
-  content:"";position:absolute;left:0;right:0;top:0;height:3px;background:var(--info-accent,var(--gold));opacity:.9;
+  content:"";position:absolute;left:0;right:0;top:0;height:4px;background:var(--info-accent,var(--gold));opacity:.9;
 }
 .info-card::after{
-  content:"";position:absolute;right:-30px;top:-30px;width:86px;height:86px;border-radius:50%;
-  background:var(--info-tint,rgba(176,138,80,.12));pointer-events:none;
+  display:none;
 }
 .info-card:nth-child(1){--info-accent:#7a2634;--info-tint:rgba(122,38,52,.095)}
 .info-card:nth-child(2){--info-accent:#b08a50;--info-tint:rgba(176,138,80,.13)}
@@ -248,13 +319,16 @@ textarea:focus-visible{
 .info-card:nth-child(4){--info-accent:#8a5a44;--info-tint:rgba(138,90,68,.105)}
 .info-card:hover{
   transform:translateY(-4px);box-shadow:var(--shadow);
-  background:linear-gradient(135deg,var(--info-tint,rgba(176,138,80,.08)),rgba(255,255,255,0) 56%),#fff;
+  background:#fff;
   border-color:transparent;
 }
-.info-card .tag{font-family:var(--serif);font-size:20px;color:var(--info-accent,var(--gold));font-weight:600}
+.info-card .tag{display:none}
 .info-card .tag,.info-card h3,.info-card p{position:relative;z-index:1}
-.info-card h3{font-family:var(--sans);font-weight:700;letter-spacing:0;font-size:18px;margin:12px 0 9px;line-height:1.25}
+.info-card h3{font-family:var(--sans);font-weight:700;letter-spacing:0;font-size:18px;margin:0 0 9px;line-height:1.25;color:var(--ink)}
 .info-card p{font-size:14.5px;color:var(--ink-soft);line-height:1.55}
+@media (min-width:681px){
+  .info-card::after{display:none}
+}
 
 /* ---------- CATEGORIES ---------- */
 .cats{background:var(--paper)}
@@ -544,34 +618,68 @@ footer{background:var(--ink);color:rgba(255,255,255,.66);padding:70px 0 36px}
   .svc,.cat,.case,.proj,.brand-chip,.btn,.nav-phone,.info-card,.supply-panel{will-change:transform}
   .svc:hover{transform:translateY(-4px);box-shadow:0 18px 42px -28px rgba(28,24,21,.32);position:relative;z-index:1}
   .brand-chip:hover{transform:translateY(-2px)}
-  .parts-visual img,.adv-visual img,.cat-visual-card img,.ownved-visual img{transition:transform .9s cubic-bezier(.16,1,.3,1)}
-  .parts-visual:hover img,.adv-visual:hover img,.cat-visual-card:hover img,.ownved-visual:hover img{transform:scale(1.035)}
+  .adv-visual img,.cat-visual-card img{transition:transform .9s cubic-bezier(.16,1,.3,1)}
+  .adv-visual:hover img,.cat-visual-card:hover img{transform:scale(1.018)}
 }
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;scroll-behavior:auto !important;transition-duration:.001ms !important}
   .reveal{opacity:1 !important;transform:none !important;filter:none !important}
 }
 
-/* ---------- PARTS (flagship: запчасти) ---------- */
+/* ---------- SERVICES OVERVIEW ---------- */
 .parts{background:var(--cream)}
-.parts .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
-.ptag{display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#fff;background:var(--wine);padding:8px 16px;border-radius:40px;margin-bottom:22px}
-.parts h2{font-size:clamp(28px,4vw,46px)}
+.parts-head{
+  display:grid;grid-template-columns:minmax(0,.82fr) minmax(300px,.45fr);
+  gap:48px;align-items:end;margin-bottom:36px;
+}
+.parts h2{font-size:clamp(28px,3.8vw,44px);margin-top:16px;max-width:760px}
 .parts h2 em{font-style:italic;color:var(--wine)}
-.parts .ptext{margin-top:20px;font-size:17px;color:var(--ink-soft);max-width:520px}
-.parts ul{margin:26px 0 32px;display:flex;flex-direction:column;gap:13px;list-style:none}
-.parts li{display:flex;gap:12px;font-size:15.5px;color:var(--ink)}
-.parts li svg{flex:none;width:21px;height:21px;color:var(--wine);margin-top:2px}
-.parts-visual{position:relative;border-radius:4px;overflow:hidden;min-height:430px;box-shadow:var(--shadow)}
-.parts-visual picture{position:absolute;inset:0;display:block}
-.parts-visual img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.parts-visual .ov{position:absolute;left:26px;bottom:24px;right:26px;color:#fff;font-family:var(--serif);font-size:20px;font-style:italic;text-shadow:0 2px 18px rgba(0,0,0,.55)}
+.parts .ptext{font-size:16.5px;color:var(--ink-soft);max-width:460px}
+.service-board{
+  display:grid;grid-template-columns:minmax(350px,.92fr) minmax(0,1.35fr);
+  gap:18px;align-items:stretch;
+}
+.service-primary,.service-row{
+  position:relative;overflow:hidden;border-radius:4px;transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;
+}
+.service-primary{
+  min-height:338px;padding:30px 30px 28px;border:1px solid rgba(122,38,52,.24);
+  color:#fff;background:linear-gradient(135deg,var(--wine),var(--wine-deep));
+  box-shadow:0 24px 62px -46px rgba(122,38,52,.78);
+}
+.service-label{
+  position:relative;z-index:1;display:block;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--gold);font-weight:800;margin-bottom:13px;
+}
+.service-primary .service-label{color:var(--gold-soft)}
+.service-primary h3{
+  position:relative;z-index:1;color:#fff;font-size:clamp(28px,3.1vw,40px);line-height:1.08;margin-bottom:14px;
+}
+.service-primary p{position:relative;z-index:1;color:rgba(255,255,255,.82);font-size:15.5px;line-height:1.62;max-width:430px}
+.service-points{position:relative;z-index:1;display:grid;gap:11px;margin:24px 0 0;padding:0;list-style:none}
+.service-points li{display:flex;gap:10px;color:rgba(255,255,255,.86);font-size:14px;line-height:1.45}
+.service-points li::before{content:"";flex:0 0 12px;width:12px;height:1px;background:var(--gold-soft);margin-top:.78em}
+.service-list{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border:1px solid var(--line-soft);
+  border-radius:4px;overflow:hidden;background:rgba(255,255,255,.42);
+}
+.service-row{
+  min-height:160px;padding:26px 26px 24px;border-right:1px solid var(--line-soft);
+  border-bottom:1px solid var(--line-soft);background:rgba(244,239,230,.72);
+}
+.service-row:nth-child(2n){border-right:0}
+.service-row:nth-last-child(-n+2){border-bottom:0}
+.service-row h3{
+  position:relative;z-index:1;font-family:var(--sans);font-size:19px;font-weight:800;line-height:1.22;letter-spacing:0;margin-bottom:9px;
+}
+.service-row p{position:relative;z-index:1;font-size:14.2px;line-height:1.55;color:var(--ink-soft)}
+.service-primary:hover,.service-row:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:rgba(176,138,80,.34)}
 
 /* ---------- OWN VED (своя таможня/логистика) ---------- */
 .ownved{background:var(--wine);color:#fff;position:relative;overflow:hidden}
-.ownved::before{content:"";position:absolute;left:-150px;bottom:-150px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(176,137,79,.32),transparent 70%)}
-.ownved::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(107,31,42,.98) 0%,rgba(107,31,42,.94) 35%,rgba(107,31,42,.74) 58%,rgba(107,31,42,.9) 100%);pointer-events:none}
-.ownved .wrap{position:relative;display:grid;grid-template-columns:minmax(0,720px) 1fr;gap:52px;align-items:center;min-height:500px;z-index:1}
+.ownved::before{content:"";position:absolute;left:-150px;bottom:-150px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(176,137,79,.32),transparent 70%);z-index:0}
+.ownved::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(107,31,42,.98) 0%,rgba(107,31,42,.9) 34%,rgba(107,31,42,.52) 62%,rgba(107,31,42,.7) 100%);pointer-events:none;z-index:1}
+.ownved .wrap{position:static;display:grid;grid-template-columns:minmax(0,720px) 1fr;gap:52px;align-items:center;min-height:500px}
 .ownved .big{position:relative;z-index:2;display:flex;align-items:flex-end;gap:20px;margin-bottom:28px}
 .ownved .big .n{font-family:var(--serif);font-weight:600;font-size:clamp(76px,8.6vw,130px);line-height:.82;color:#fff}
 .ownved .big .u{font-size:18px;color:var(--gold-soft);letter-spacing:.03em;margin:0 0 10px;line-height:1.4}
@@ -580,14 +688,14 @@ footer{background:var(--ink);color:rgba(255,255,255,.66);padding:70px 0 36px}
 .ownved h2{font-size:clamp(32px,4.4vw,56px);color:#fff;margin:16px 0 0;max-width:580px}
 .ownved p{margin-top:22px;font-size:18px;color:rgba(255,255,255,.84);max-width:560px}
 .ownved-visual{
-  position:absolute;top:-116px;right:clamp(-360px,calc((var(--maxw) - 100vw) / 2),0px);bottom:-116px;width:min(68vw,980px);border-radius:0;overflow:hidden;border:0;
+  position:absolute;top:0;right:0;bottom:0;width:min(70vw,1080px);border-radius:0;overflow:hidden;border:0;
   box-shadow:none;background:transparent;z-index:0;
   -webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.08) 9%,rgba(0,0,0,.58) 24%,#000 43%,#000 100%);
   mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.08) 9%,rgba(0,0,0,.58) 24%,#000 43%,#000 100%)
 }
 .ownved-visual picture,.ownved-visual img{position:absolute;inset:0;width:100%;height:100%;display:block}
-.ownved-visual img{object-fit:cover;object-position:center 57%;filter:saturate(.9) contrast(.98) brightness(.82)}
-.ownved-visual::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(107,31,42,.64) 0%,rgba(107,31,42,.18) 34%,rgba(18,12,10,.2) 100%),linear-gradient(180deg,rgba(18,12,10,.04),rgba(18,12,10,.32))}
+.ownved-visual img{object-fit:cover;object-position:center 57%;filter:saturate(.9) contrast(.98) brightness(.82);transition:none}
+.ownved-visual::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(107,31,42,.46) 0%,rgba(107,31,42,.1) 36%,rgba(18,12,10,.16) 100%),linear-gradient(180deg,rgba(18,12,10,.02),rgba(18,12,10,.22))}
 .ownved-caption{
   display:none
 }
@@ -756,14 +864,12 @@ body.lightbox-lock{overflow:hidden}
 /* responsive for new blocks */
 @media(max-width:980px){.case-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:880px){
-  .parts .wrap{grid-template-columns:1fr;gap:34px}
   .ownved .wrap{grid-template-columns:1fr;gap:30px;min-height:0}
-  .parts-visual{min-height:300px}
   .ownved .big{display:flex;align-items:baseline;gap:14px;margin-bottom:6px}
   .ownved-visual{
     position:relative;top:auto;right:auto;bottom:auto;width:100%;min-height:260px;order:3;border-radius:4px;
     border:1px solid rgba(255,255,255,.14);box-shadow:0 22px 60px -40px rgba(0,0,0,.7);
-    -webkit-mask-image:none;mask-image:none
+    -webkit-mask-image:none;mask-image:none;z-index:2
   }
   .ownved-visual img{filter:saturate(.96) contrast(.98) brightness(.96)}
   .ownved-visual::after{display:none}
@@ -901,8 +1007,10 @@ body.lightbox-lock{overflow:hidden}
   .manifesto blockquote{max-width:100%;overflow-wrap:break-word}
   .form{padding:26px 22px}
   .section{padding:64px 0}
-  .hero-actions{flex-direction:column;align-items:stretch;gap:12px}
-  .hero-actions .btn,.parts .btn{width:100%;justify-content:center}
+  .hero-actions{flex-direction:row;align-items:stretch;gap:10px;flex-wrap:nowrap}
+  .hero-actions .btn{flex:1 1 0;min-width:0;width:auto;justify-content:center;padding:13px 10px;font-size:13.5px}
+  .hero-actions .btn-full{display:none}
+  .hero-actions .btn-short{display:inline}
   .parts h2,.ownved h2,.section-head h2,.contact h2,.manifesto blockquote{font-size:clamp(23px,6.6vw,30px)}
   .ownved{padding:0;isolation:isolate}
   .ownved .wrap{
@@ -916,15 +1024,30 @@ body.lightbox-lock{overflow:hidden}
   .ownved .big{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:16px;margin-bottom:22px}
   .ownved .big .n{font-size:70px;line-height:.9}
   .ownved .big .u{font-size:15px;margin:0;line-height:1.35}
-  .parts-visual{min-height:0;background:var(--paper);box-shadow:0 18px 42px -34px rgba(28,24,21,.34)}
-  .parts-visual picture{position:relative;display:block;height:190px;overflow:hidden}
-  .parts-visual img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 46%}
-  .parts-visual .ov{
-    position:static;display:block;right:auto;bottom:auto;left:auto;
-    padding:16px 18px;border-top:1px solid var(--line-soft);
-    color:var(--wine-deep);background:linear-gradient(180deg,rgba(244,239,230,.98),rgba(239,232,219,.98));
-    font-family:var(--sans);font-style:normal;font-weight:800;font-size:15px;line-height:1.35;text-shadow:none;
+  .parts-head{display:block;margin-bottom:24px}
+  .parts h2{max-width:100%;margin-top:14px}
+  .parts .ptext{margin-top:14px;font-size:14.8px;line-height:1.55;max-width:100%}
+  .service-board{
+    display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;
+    margin:0 -20px;padding:0 20px 12px;-webkit-overflow-scrolling:touch;
   }
+  .service-board::-webkit-scrollbar{display:none}
+  .service-list{display:contents}
+  .service-primary{
+    flex:0 0 min(84vw,326px);min-height:314px;padding:24px 22px;scroll-snap-align:start;
+  }
+  .service-primary h3{font-size:27px}
+  .service-primary p{font-size:14.2px}
+  .service-points{gap:9px;margin-top:18px}
+  .service-points li{font-size:13.2px}
+  .service-row{
+    flex:0 0 min(76vw,292px);min-height:226px;padding:22px 20px;scroll-snap-align:start;
+    border:1px solid var(--line-soft);border-radius:4px;background:var(--paper);
+    box-shadow:0 18px 38px -34px rgba(28,24,21,.42);
+  }
+  .service-row:nth-child(n){border:1px solid var(--line-soft)}
+  .service-row h3{font-size:17px}
+  .service-row p{font-size:13.4px}
   .cat-visual-card{min-height:0;box-shadow:0 14px 30px -28px rgba(28,24,21,.42)}
   .cat-visual-card picture,.cat-visual-card:first-child picture{height:auto;aspect-ratio:4/3}
   .cat-visual-card figcaption{font-size:11.2px;min-height:42px;padding:9px 4px;gap:5px;line-height:1.15}
@@ -952,7 +1075,7 @@ body.lightbox-lock{overflow:hidden}
     border:0;
     border-radius:0;
     box-shadow:none;
-    opacity:.72;
+    opacity:.88;
     z-index:0;
     pointer-events:none;
     -webkit-mask-image:none;
@@ -961,14 +1084,14 @@ body.lightbox-lock{overflow:hidden}
   .ownved-visual picture,.ownved-visual img{position:absolute;inset:0;width:100%;height:100%}
   .ownved-visual img{
     object-position:center;
-    filter:saturate(.86) contrast(1.05) brightness(.58) blur(1px);
+    filter:saturate(.9) contrast(1.05) brightness(.72) blur(.6px);
     transform:scale(1.025);
   }
   .ownved-visual::after{
     display:block;
     background:
-      linear-gradient(90deg,rgba(107,31,42,.96) 0%,rgba(107,31,42,.9) 52%,rgba(107,31,42,.64) 100%),
-      linear-gradient(180deg,rgba(18,12,10,.16),rgba(18,12,10,.46));
+      linear-gradient(90deg,rgba(107,31,42,.91) 0%,rgba(107,31,42,.8) 52%,rgba(107,31,42,.42) 100%),
+      linear-gradient(180deg,rgba(18,12,10,.08),rgba(18,12,10,.32));
   }
   .stat .num{font-size:clamp(40px,12vw,54px)}
   .cat,.svc,.case,.info-card,.supply-panel{padding:24px 22px}
@@ -990,18 +1113,13 @@ body.lightbox-lock{overflow:hidden}
   .svc p{font-size:13.5px;line-height:1.48}
   .info-grid{gap:10px}
   .info-card{
-    padding:18px 18px 17px 62px;min-height:0;
+    padding:18px 18px 17px 20px;min-height:0;
     background:
       linear-gradient(135deg,var(--info-tint,rgba(176,138,80,.1)),rgba(255,255,255,0) 60%),
       rgba(244,239,230,.96);
   }
   .info-card::before{left:0;right:auto;top:0;bottom:0;width:3px;height:auto}
   .info-card::after{width:70px;height:70px;right:-32px;top:-32px}
-  .info-card .tag{
-    position:absolute;left:18px;top:18px;z-index:2;width:30px;height:30px;border-radius:50%;
-    display:grid;place-items:center;background:var(--info-accent,var(--gold));color:#fff;
-    font-family:var(--sans);font-size:11px;letter-spacing:.08em;
-  }
   .info-card h3{font-size:16px;margin:0 0 6px;line-height:1.25}
   .info-card p{font-size:13.3px;line-height:1.48}
   .route-map{margin:-16px 0 26px;padding:20px 18px}
@@ -1073,7 +1191,7 @@ body.lightbox-lock{overflow:hidden}
       <a href="#services">Услуги</a>
       <a href="#categories">Оборудование</a>
       <a href="#process">Как работаем</a>
-      <a href="#brands">Бренды</a>
+      <a href="#advantages">Преимущества</a>
       <a href="#projects">Проекты</a>
       <a href="#contact">Контакты</a>
       <a href="#lead-form" class="btn btn-primary nav-drawer-cta">Получить расчёт</a>
@@ -1099,8 +1217,8 @@ body.lightbox-lock{overflow:hidden}
     <h1>Поставка оборудования для&nbsp;вашего <em>вина</em></h1>
     <p class="lead">Подберём, закупим, доставим, оформим и запустим оборудование для винодельческого производства. Работаем с линиями розлива, прессами, фильтрацией, ёмкостями, запчастями и комплектующими.</p>
     <div class="hero-actions">
-      <a href="#lead-form" class="btn btn-primary">Получить консультацию</a>
-      <a href="#categories" class="btn btn-light">Каталог оборудования</a>
+      <a href="#lead-form" class="btn btn-primary"><span class="btn-full">Получить консультацию</span><span class="btn-short">Консультация</span></a>
+      <a href="#categories" class="btn btn-light"><span class="btn-full">Каталог оборудования</span><span class="btn-short">Каталог</span></a>
     </div>
   </div>
   <div class="hero-meta">
@@ -1121,23 +1239,49 @@ body.lightbox-lock{overflow:hidden}
   </div>
 </section>
 
-<!-- PARTS (ключевая услуга) -->
-<section class="section parts">
+<!-- SERVICES OVERVIEW -->
+<section class="section parts" id="services">
   <div class="wrap">
-    <div class="reveal">
-      <span class="eyebrow">Запчасти и расходники</span>
-      <h2>Запчасти и расходники для&nbsp;<em>промышленного оборудования</em></h2>
-      <p class="ptext">Привезём оригинальные запасные части и расходные материалы для линий розлива, прессов, насосов, фильтрации и другого винодельческого оборудования. Не дадим производству встать из-за одной детали.</p>
-      <ul>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M20 6 9 17l-5-5"/></svg>Оригинальные детали от производителей и проверенных поставщиков</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M20 6 9 17l-5-5"/></svg>Подбор по артикулу, модели оборудования или фото шильдика</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M20 6 9 17l-5-5"/></svg>Срочные поставки, когда деталь нужна «ещё вчера»</li>
-      </ul>
-      <a href="#lead-form" class="btn btn-primary">Запросить запчасть</a>
+    <div class="parts-head reveal">
+      <div>
+        <span class="eyebrow">Услуги</span>
+        <h2>Услуги для винодельческого производства и&nbsp;<em>поставок</em></h2>
+      </div>
+      <p class="ptext">Можно обратиться за одной позицией или передать нам весь цикл: от подбора оборудования до документов, доставки и запуска на площадке.</p>
     </div>
-    <div class="parts-visual reveal d1">
-      <picture><source srcset="assets/stock/optimized/brewery-gauge-valves.webp" type="image/webp"><img src="assets/stock/optimized/brewery-gauge-valves.webp" alt="Манометр и вентили на промышленном винодельческом оборудовании" width="1200" height="1800" loading="lazy"></picture>
-      <span class="ov">Узлы, расходники и комплектующие под вашу линию</span>
+    <div class="service-board">
+      <article class="service-primary reveal">
+        <span class="service-label">срочные позиции</span>
+        <h3>Запчасти и расходники</h3>
+        <p>Если производство рискует встать из-за одной детали, подберём оригинальную позицию и организуем поставку.</p>
+        <ul class="service-points">
+          <li>подбор по модели, артикулу или фото шильдика</li>
+          <li>для розлива, прессов, насосов и фильтрации</li>
+          <li>отдельно или вместе с крупной поставкой</li>
+        </ul>
+      </article>
+      <div class="service-list">
+        <article class="service-row reveal d1">
+          <span class="service-label">оборудование</span>
+          <h3>Подбор и комплектация</h3>
+          <p>Собираем состав линии под нужную мощность, участок, формат продукта и бюджет.</p>
+        </article>
+        <article class="service-row reveal d2">
+          <span class="service-label">закупка</span>
+          <h3>Выкуп у производителя</h3>
+          <p>Берём на себя переговоры, оплату, подготовку партии и проверку документов перед отгрузкой.</p>
+        </article>
+        <article class="service-row reveal">
+          <span class="service-label">вэд</span>
+          <h3>Доставка и таможня</h3>
+          <p>Выстраиваем маршрут, закрываем оформление, платежи и коммуникацию с таможней.</p>
+        </article>
+        <article class="service-row reveal d1">
+          <span class="service-label">запуск</span>
+          <h3>Документы и пусконаладка</h3>
+          <p>Передаём простой пакет документов, готовим сертификаты и организуем запуск оборудования.</p>
+        </article>
+      </div>
     </div>
   </div>
 </section>
@@ -1186,7 +1330,7 @@ body.lightbox-lock{overflow:hidden}
 </section>
 
 <!-- SERVICES -->
-<section class="section services" id="services">
+<section class="section services" id="cycle">
   <div class="wrap">
     <div class="section-head reveal">
       <span class="eyebrow">Что мы берём на себя</span>
@@ -1612,7 +1756,7 @@ body.lightbox-lock{overflow:hidden}
         <a href="#services">Услуги</a>
         <a href="#categories">Оборудование</a>
         <a href="#process">Как работаем</a>
-        <a href="#brands">Бренды</a>
+        <a href="#advantages">Преимущества</a>
         <a href="#contact">Контакты</a>
         <a href="privacy.html" class="policy-link">Политика конфиденциальности</a>
       </div>
@@ -1763,6 +1907,7 @@ const getAnchorNudge=(hash)=>{
     services:compact?48:tablet?50:52,
     categories:compact?58:tablet?60:62,
     process:compact?22:tablet?22:20,
+    advantages:compact?34:tablet?36:38,
     brands:compact?34:tablet?36:38,
     projects:compact?26:tablet?76:84,
     contact:compact?74:tablet?78:82,

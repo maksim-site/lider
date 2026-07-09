@@ -4,3 +4,5 @@ tmp/
 config.php
 leads*.log
 .lead-rate-limit.json
+assets/stock/best/
+assets/stock/*.jpg
