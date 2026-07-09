@@ -1948,7 +1948,7 @@ const getAnchorTarget=(hash)=>{
   return document.getElementById(id);
 };
 let anchorScrollFrame=0;
-const anchorEase=t=>1-Math.pow(1-t,4);
+const anchorEase=t=>.5-Math.cos(Math.PI*t)/2;
 const animateWindowScroll=(top,duration=900)=>{
   cancelAnimationFrame(anchorScrollFrame);
   if(prefersReducedMotion){
@@ -1961,6 +1961,9 @@ const animateWindowScroll=(top,duration=900)=>{
     window.scrollTo(0,top);
     return;
   }
+  const html=document.documentElement;
+  const previousScrollBehavior=html.style.scrollBehavior;
+  html.style.scrollBehavior='auto';
   const started=performance.now();
   const tick=now=>{
     const progress=Math.min(1,(now-started)/duration);
@@ -1969,6 +1972,7 @@ const animateWindowScroll=(top,duration=900)=>{
       anchorScrollFrame=requestAnimationFrame(tick);
     }else{
       anchorScrollFrame=0;
+      html.style.scrollBehavior=previousScrollBehavior;
     }
   };
   anchorScrollFrame=requestAnimationFrame(tick);
@@ -2065,7 +2069,7 @@ document.querySelectorAll('a[href^="#"]').forEach(link=>{
     const wasMenuOpen=navLinks.classList.contains('open');
     setMenuOpen(false);
     const runScroll=()=>scrollToHash(hash);
-    if(wasMenuOpen)requestAnimationFrame(runScroll);
+    if(wasMenuOpen)setTimeout(runScroll,430);
     else runScroll();
     if(hash==='#')history.pushState(null,'',window.location.pathname);
     else history.pushState(null,'',hash);
