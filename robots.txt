@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /test1/
+
+Sitemap: https://lider-vino.ru/sitemap.xml
