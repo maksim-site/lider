@@ -17,7 +17,7 @@
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="robots" content="index, follow" />
 <meta name="theme-color" content="#6B1F2A" />
-<link rel="icon" href="assets/lion-mark.svg" type="image/svg+xml" />
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
 <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
 <link rel="preload" as="image" href="assets/vineyard.webp" type="image/webp" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -117,8 +117,16 @@ main:focus{outline:none}
 .eyebrow::before{content:"";width:28px;height:1px;background:var(--gold);display:inline-block}
 h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.12;letter-spacing:-.005em}
 .section{padding:120px 0}
-:root{--anchor-offset:92px}
+:root{
+  --anchor-offset:92px;
+  --categories-anchor-nudge:62px;
+  --projects-anchor-nudge:84px;
+  --contact-anchor-nudge:82px;
+}
 section[id],#lead-form{scroll-margin-top:var(--anchor-offset)}
+#categories{scroll-margin-top:calc(var(--anchor-offset) - var(--categories-anchor-nudge))}
+#projects{scroll-margin-top:calc(var(--anchor-offset) - var(--projects-anchor-nudge))}
+#contact{scroll-margin-top:calc(var(--anchor-offset) - var(--contact-anchor-nudge))}
 .section-head{max-width:720px;margin-bottom:64px}
 .section-head h2{font-size:clamp(30px,4.4vw,52px);margin:18px 0 0}
 .section-head p{margin-top:20px;font-size:18px;color:var(--ink-soft);max-width:620px}
@@ -272,13 +280,11 @@ textarea:focus-visible{
 }
 .hero-inner{padding-top:140px;padding-bottom:90px;max-width:var(--maxw);width:100%}
 .hero h1{
-  color:#fff;font-size:clamp(40px,6vw,76px);margin:26px 0 0;font-weight:500;
+  color:#fff;font-size:clamp(40px,6vw,76px);margin:0;font-weight:500;
   max-width:14ch;text-shadow:0 2px 30px rgba(0,0,0,.3);
 }
 .hero h1 em{font-style:italic;color:var(--gold-soft)}
 .hero .lead{color:rgba(255,255,255,.88);font-size:clamp(17px,2vw,21px);margin-top:28px;max-width:600px}
-.hero .eyebrow{color:var(--gold-soft)}
-.hero .eyebrow::before{background:var(--gold-soft)}
 .hero-actions{display:flex;gap:16px;margin-top:40px;flex-wrap:wrap}
 .hero-actions .btn-short{display:none}
 .hero-meta{
@@ -643,7 +649,6 @@ footer{background:var(--ink);color:rgba(255,255,255,.66);padding:70px 0 36px}
   animation:heroImageIn 1800ms cubic-bezier(.16,1,.3,1) both;
   will-change:transform;
 }
-.hero .eyebrow,
 .hero h1,
 .hero .lead,
 .hero-actions,
@@ -651,10 +656,9 @@ footer{background:var(--ink);color:rgba(255,255,255,.66);padding:70px 0 36px}
   animation:heroRise 820ms cubic-bezier(.16,1,.3,1) both;
   will-change:opacity,transform,filter;
 }
-.hero .eyebrow{animation-delay:.12s}
-.hero h1{animation-delay:.22s}
-.hero .lead{animation-delay:.34s}
-.hero-actions{animation-delay:.46s}
+.hero h1{animation-delay:.12s}
+.hero .lead{animation-delay:.24s}
+.hero-actions{animation-delay:.36s}
 .hero-meta .item:nth-child(1){animation-delay:.62s}
 .hero-meta .item:nth-child(2){animation-delay:.7s}
 .hero-meta .item:nth-child(3){animation-delay:.78s}
@@ -918,11 +922,15 @@ body.lightbox-lock{overflow:hidden}
   .lightbox-inner{width:100%;max-height:calc(100vh - 28px)}
   .lightbox img{max-height:72vh}.lightbox-close{right:14px;top:14px;width:44px;height:44px}
   .lightbox-nav{
-    width:44px;height:44px;top:50%;bottom:auto;transform:translateY(-50%);
+    position:static;width:44px;height:44px;transform:none;flex:none;
     background:rgba(18,12,10,.58);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
   }
-  .lightbox-prev{left:10px}.lightbox-next{right:10px}
-  .lightbox-caption-wrap{padding:0 54px;align-items:center}
+  .lightbox-prev,.lightbox-next{left:auto;right:auto}
+  .lightbox-caption-wrap{
+    display:grid;grid-template-columns:44px minmax(0,1fr) auto 44px;
+    align-items:center;gap:9px;padding:0;
+  }
+  .lightbox-caption{line-height:1.45}
   .lightbox-count{font-size:12px}
 }
 
@@ -948,6 +956,11 @@ body.lightbox-lock{overflow:hidden}
   .nav-phone{display:none}
 }
 @media(max-width:1080px){
+  :root{
+    --categories-anchor-nudge:60px;
+    --projects-anchor-nudge:76px;
+    --contact-anchor-nudge:78px;
+  }
   .nav{justify-content:flex-start}
   .nav-links{
     position:fixed;top:0;right:0;bottom:auto;left:0;width:100%;max-width:none;
@@ -1006,6 +1019,11 @@ body.lightbox-lock{overflow:hidden}
   .adv-visual{min-height:360px}
 }
 @media(max-width:680px){
+  :root{
+    --categories-anchor-nudge:58px;
+    --projects-anchor-nudge:26px;
+    --contact-anchor-nudge:74px;
+  }
   .wrap{padding:0 20px}
   .eyebrow{display:flex;flex-wrap:wrap;line-height:1.5;letter-spacing:.16em}
   .eyebrow::before{flex:0 0 28px}
@@ -1307,7 +1325,6 @@ body.lightbox-lock{overflow:hidden}
     </picture>
   </div>
   <div class="wrap hero-inner">
-    <span class="eyebrow">Компания «Лидер» · поставка оборудования</span>
     <h1>Поставка оборудования для&nbsp;вашего <em>вина</em></h1>
     <p class="lead">Подберём, закупим, доставим, оформим и запустим оборудование для винодельческого производства. Работаем с линиями розлива, прессами, фильтрацией, ёмкостями, запчастями и комплектующими.</p>
     <div class="hero-actions">
@@ -1814,18 +1831,18 @@ body.lightbox-lock{overflow:hidden}
 <div class="lightbox" id="projectLightbox" aria-hidden="true">
   <div class="lightbox-inner" role="dialog" aria-modal="true" aria-label="Просмотр чертежа" aria-describedby="projectLightboxCaption">
     <button class="lightbox-close" type="button" aria-label="Закрыть">×</button>
-    <button class="lightbox-nav lightbox-prev" type="button" aria-label="Предыдущий чертёж">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
-    </button>
-    <button class="lightbox-nav lightbox-next" type="button" aria-label="Следующий чертёж">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
-    </button>
     <div class="lightbox-stage">
       <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="" draggable="false">
     </div>
     <div class="lightbox-caption-wrap">
+      <button class="lightbox-nav lightbox-prev" type="button" aria-label="Предыдущий чертёж">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
       <div class="lightbox-caption" id="projectLightboxCaption"></div>
       <div class="lightbox-count" aria-live="polite"></div>
+      <button class="lightbox-nav lightbox-next" type="button" aria-label="Следующий чертёж">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+      </button>
     </div>
   </div>
 </div>
@@ -2022,7 +2039,10 @@ document.addEventListener('wheel',stopBackgroundScroll,{passive:false});
 // consistent in-page navigation under the fixed header
 const syncAnchorOffset=()=>{
   const gap=window.innerWidth<=680?18:window.innerWidth<=1080?20:22;
-  const offset=Math.ceil(header.getBoundingClientRect().height+gap);
+  const navHeight=header.querySelector('.nav')?.getBoundingClientRect().height||44;
+  // Anchor links always finish with the compact header state (10px padding above and below).
+  // Measuring the transparent, taller header at the top of the page caused a small under-scroll.
+  const offset=Math.ceil(navHeight+20+gap);
   document.documentElement.style.setProperty('--anchor-offset',`${offset}px`);
   return offset;
 };
